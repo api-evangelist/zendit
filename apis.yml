@@ -1,27 +1,71 @@
 aid: zendit
-name: zendit
-description: 'Access the GlobalPrepayment Ecosystem '
+name: Zendit
+description: >-
+  Zendit is a cloud-based Prepay-as-a-Service platform that provides API access
+  to a global prepaid ecosystem. The API enables businesses to offer mobile
+  top-ups, data packages, digital gift cards, prepaid utility bill payments, and
+  eSIM products through a single integration.
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
+  - Prepaid
+  - Mobile Top-Up
+  - Gift Cards
+  - eSIM
+  - Payments
 created: '2025-02-08'
-modified: '2025-02-08'
+modified: '2026-03-16'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
   - aid: zendit:zendit
-    name: zendit
-    description: 'Access the GlobalPrepayment Ecosystem '
-    humanURL: ' https://zendit.io/'
+    name: Zendit API
+    description: >-
+      The Zendit API provides programmatic access to the global prepaid ecosystem,
+      enabling developers to offer mobile credit top-ups, data packages, digital
+      gift cards, prepaid utility bill payments, and eSIM products. The platform
+      supports self-onboarding, sandbox testing, and webhook notifications.
+    humanURL: https://zendit.io/
     tags:
-      - API
+      - Prepaid
+      - Mobile Top-Up
+      - Gift Cards
+      - eSIM
     properties:
       - type: Documentation
-        url: ' https://zendit.io/'
+        url: https://zendit.io/
+      - type: Getting Started
+        url: https://zendit.io/user-guide/getting-started/
+      - type: Guide
+        url: https://zendit.io/guide-to-integrating-zendits-api-into-your-projects/
+common:
+  - url: https://zendit.io/
+    name: Zendit - Access the Global Prepayment Ecosystem
+    type: Website
+    description: 'null'
+  - url: https://zendit.io/user-guide/
+    name: User Guide | Zendit
+    type: Documentation
+    description: 'null'
+  - url: https://zendit.io/user-guide/getting-started/
+    name: Getting Started | Zendit
+    type: Getting Started
+    description: 'null'
+  - url: https://console.zendit.io/login
+    name: Zendit Console Login
+    type: Login
+    description: 'null'
+  - url: https://zendit.io/zendit-new-features/
+    name: Zendit Releases
+    type: ChangeLog
+    description: 'null'
+  - url: https://github.com/zenditplatform
+    name: Zendit GitHub Organization
+    type: GitHubOrganization
+    description: 'null'
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
