@@ -10,11 +10,11 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Prepaid
-  - Mobile Top-Up
-  - Gift Cards
   - eSIM
+  - Gift Cards
+  - Mobile Top-Up
   - Payments
+  - Prepaid
 created: '2025-02-08'
 modified: '2026-03-16'
 url: >-
@@ -30,10 +30,10 @@ apis:
       supports self-onboarding, sandbox testing, and webhook notifications.
     humanURL: https://zendit.io/
     tags:
-      - Prepaid
-      - Mobile Top-Up
-      - Gift Cards
       - eSIM
+      - Gift Cards
+      - Mobile Top-Up
+      - Prepaid
     properties:
       - type: Documentation
         url: https://zendit.io/
