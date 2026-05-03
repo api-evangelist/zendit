@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/zendit-api-offer-structure.json",
+  "name": "Offer",
+  "description": "Product offer (top-up, eSIM, voucher).",
+  "type": "object",
+  "properties": {
+    "offerId": {
+      "type": "string",
+      "description": "Unique offer identifier.",
+      "example": "offer-12345"
+    },
+    "name": {
+      "type": "string",
+      "description": "Offer display name.",
+      "example": "Rebel Prepaid 10 USD"
+    },
+    "brand": {
+      "type": "string",
+      "description": "Brand identifier.",
+      "example": "rebel-prepaid"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country code.",
+      "example": "US"
+    },
+    "type": {
+      "type": "string",
+      "description": "Offer type.",
+      "example": "TOPUP"
+    },
+    "subType": {
+      "type": "string",
+      "description": "Offer sub-type.",
+      "example": "Mobile Top Up"
+    },
+    "price": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "send": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "receive": {
+      "$ref": "#/components/schemas/Price"
+    }
+  }
+}

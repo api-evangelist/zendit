@@ -1,0 +1,11 @@
+{
+  "offerId": "offer-12345",
+  "name": "Rebel Prepaid 10 USD",
+  "brand": "rebel-prepaid",
+  "country": "US",
+  "type": "TOPUP",
+  "subType": "Mobile Top Up",
+  "price": "example-value",
+  "send": "example-value",
+  "receive": "example-value"
+}

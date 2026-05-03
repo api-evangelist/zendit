@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/zendit-api-report-structure.json",
+  "name": "Report",
+  "description": "Asynchronous report job.",
+  "type": "object",
+  "properties": {
+    "reportId": {
+      "type": "string",
+      "example": "report-abc123"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PENDING",
+        "IN_PROGRESS",
+        "READY",
+        "FAILED"
+      ],
+      "example": "READY"
+    },
+    "downloadUrl": {
+      "type": "uri",
+      "example": "https://api.zendit.io/v1/reports/report-abc123/download"
+    },
+    "createdAt": {
+      "type": "datetime",
+      "example": "2026-05-01T12:00:00Z"
+    }
+  }
+}

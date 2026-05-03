@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Refund",
+  "description": "Refund status for an eSIM purchase.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/zendit-api-refund-schema.json",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string",
+      "example": "500123"
+    },
+    "refundId": {
+      "type": "string",
+      "example": "refund-abc123"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "REQUESTED",
+        "APPROVED",
+        "COMPLETED",
+        "REJECTED"
+      ],
+      "example": "APPROVED"
+    },
+    "amount": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-05-01T12:00:00Z"
+    }
+  }
+}

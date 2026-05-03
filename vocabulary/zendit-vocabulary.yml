@@ -1,0 +1,92 @@
+vocabulary: 1.0.0
+info:
+  provider: Zendit
+  description: Vocabulary for Zendit APIs.
+  created: '2026-05-03'
+  modified: '2026-05-03'
+operational:
+  apis:
+    - name: Zendit API
+      namespace: zendit-api
+      version: 1.0.0
+      baseUrl: https://api.zendit.io/v1
+      status: active
+  resources:
+    - name: balance
+      methods:
+        - get
+    - name: brands
+      methods:
+        - get
+    - name: topups
+      methods:
+        - get
+        - post
+    - name: esim
+      methods:
+        - get
+        - post
+    - name: vouchers
+      methods:
+        - get
+        - post
+    - name: transactions
+      methods:
+        - get
+    - name: tools
+      methods:
+        - get
+    - name: reports
+      methods:
+        - get
+        - post
+  actions:
+    - verb: get
+      methods:
+        - GET
+    - verb: list
+      methods:
+        - GET
+    - verb: create
+      methods:
+        - POST
+    - verb: lookup
+      methods:
+        - GET
+    - verb: download
+      methods:
+        - GET
+  schemas:
+    core:
+      - Balance
+      - Brand
+      - BrandList
+      - Error
+      - EsimPlan
+      - EsimPlanList
+      - EsimPurchaseRequest
+      - Offer
+      - OfferList
+      - PhoneLookup
+      - Price
+      - Purchase
+      - PurchaseList
+      - RedemptionInstructions
+      - Refund
+      - Report
+      - ReportRequest
+      - TopupPurchaseRequest
+      - Transaction
+      - TransactionList
+      - VoucherPurchaseRequest
+capability:
+  workflows:
+    - name: Zendit Workflow
+      file: capabilities/zendit-workflow.yaml
+      description: Unified workflow for Zendit
+      apis:
+        - zendit-api
+  personas:
+    - id: developer
+      name: Developer
+      description: Integrates with Zendit APIs

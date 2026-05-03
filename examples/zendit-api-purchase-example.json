@@ -1,0 +1,10 @@
+{
+  "transactionId": "txn-abc123",
+  "offerId": "offer-12345",
+  "status": "DONE",
+  "type": "TOPUP",
+  "createdAt": "2026-05-01T12:00:00Z",
+  "send": "example-value",
+  "receive": "example-value",
+  "details": {}
+}

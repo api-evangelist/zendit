@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/zendit-api-purchase-structure.json",
+  "name": "Purchase",
+  "description": "Purchase transaction.",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string",
+      "example": "txn-abc123"
+    },
+    "offerId": {
+      "type": "string",
+      "example": "offer-12345"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DONE",
+        "FAILED",
+        "PENDING",
+        "ACCEPTED",
+        "AUTHORIZED",
+        "IN_PROGRESS"
+      ],
+      "example": "DONE"
+    },
+    "type": {
+      "type": "string",
+      "example": "TOPUP"
+    },
+    "createdAt": {
+      "type": "datetime",
+      "example": "2026-05-01T12:00:00Z"
+    },
+    "send": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "receive": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "details": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).",
+      "example": {}
+    }
+  }
+}

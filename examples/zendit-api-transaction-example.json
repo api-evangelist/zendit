@@ -1,0 +1,12 @@
+{
+  "transactionId": "txn-abc123",
+  "type": "TOPUP",
+  "status": "DONE",
+  "createdAt": "2026-05-01T12:00:00Z",
+  "history": [
+    {
+      "status": "PENDING",
+      "timestamp": "2026-05-01T12:00:00Z"
+    }
+  ]
+}

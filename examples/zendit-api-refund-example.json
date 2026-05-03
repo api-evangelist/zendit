@@ -1,0 +1,7 @@
+{
+  "transactionId": "500123",
+  "refundId": "refund-abc123",
+  "status": "APPROVED",
+  "amount": "example-value",
+  "createdAt": "2026-05-01T12:00:00Z"
+}

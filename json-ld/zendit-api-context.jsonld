@@ -1,0 +1,181 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "zendit": "https://zendit.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Balance": "zendit:Balance",
+    "BrandList": "zendit:BrandList",
+    "Brand": "zendit:Brand",
+    "EsimPlan": "zendit:EsimPlan",
+    "OfferList": "zendit:OfferList",
+    "Offer": "zendit:Offer",
+    "PhoneLookup": "zendit:PhoneLookup",
+    "Price": "zendit:Price",
+    "PurchaseList": "zendit:PurchaseList",
+    "Purchase": "zendit:Purchase",
+    "RedemptionInstructions": "zendit:RedemptionInstructions",
+    "Refund": "zendit:Refund",
+    "ReportRequest": "zendit:ReportRequest",
+    "Report": "zendit:Report",
+    "TransactionList": "zendit:TransactionList",
+    "Transaction": "zendit:Transaction",
+    "amount": {
+      "@id": "zendit:amount",
+      "@type": "xsd:decimal"
+    },
+    "currency": {
+      "@id": "zendit:currency",
+      "@type": "xsd:string"
+    },
+    "accountId": {
+      "@id": "zendit:accountId",
+      "@type": "xsd:string"
+    },
+    "list": {
+      "@id": "zendit:list",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "offset": {
+      "@id": "zendit:offset",
+      "@type": "xsd:integer"
+    },
+    "limit": {
+      "@id": "zendit:limit",
+      "@type": "xsd:integer"
+    },
+    "total": {
+      "@id": "zendit:total",
+      "@type": "xsd:integer"
+    },
+    "id": {
+      "@id": "zendit:id",
+      "@type": "xsd:string"
+    },
+    "name": "schema:name",
+    "country": {
+      "@id": "zendit:country",
+      "@type": "xsd:string"
+    },
+    "logoUrl": {
+      "@id": "zendit:logoUrl",
+      "@type": "xsd:string"
+    },
+    "types": {
+      "@id": "zendit:types",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "planId": {
+      "@id": "zendit:planId",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "zendit:status",
+      "@type": "xsd:string"
+    },
+    "dataUsed": {
+      "@id": "zendit:dataUsed",
+      "@type": "xsd:decimal"
+    },
+    "dataTotal": {
+      "@id": "zendit:dataTotal",
+      "@type": "xsd:decimal"
+    },
+    "validUntil": {
+      "@id": "zendit:validUntil",
+      "@type": "xsd:dateTime"
+    },
+    "offerId": {
+      "@id": "zendit:offerId",
+      "@type": "xsd:string"
+    },
+    "brand": {
+      "@id": "zendit:brand",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "zendit:type",
+      "@type": "xsd:string"
+    },
+    "subType": {
+      "@id": "zendit:subType",
+      "@type": "xsd:string"
+    },
+    "price": {
+      "@id": "zendit:price",
+      "@type": "xsd:string"
+    },
+    "send": {
+      "@id": "zendit:send",
+      "@type": "xsd:string"
+    },
+    "receive": {
+      "@id": "zendit:receive",
+      "@type": "xsd:string"
+    },
+    "msisdn": {
+      "@id": "zendit:msisdn",
+      "@type": "xsd:string"
+    },
+    "carrier": {
+      "@id": "zendit:carrier",
+      "@type": "xsd:string"
+    },
+    "transactionId": {
+      "@id": "zendit:transactionId",
+      "@type": "xsd:string"
+    },
+    "createdAt": {
+      "@id": "zendit:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "details": {
+      "@id": "zendit:details",
+      "@type": "@id"
+    },
+    "deliveryType": {
+      "@id": "zendit:deliveryType",
+      "@type": "xsd:string"
+    },
+    "instructions": {
+      "@id": "zendit:instructions",
+      "@type": "xsd:string"
+    },
+    "termsAndConditions": {
+      "@id": "zendit:termsAndConditions",
+      "@type": "xsd:string"
+    },
+    "refundId": {
+      "@id": "zendit:refundId",
+      "@type": "xsd:string"
+    },
+    "dateFrom": {
+      "@id": "zendit:dateFrom",
+      "@type": "xsd:date"
+    },
+    "dateTo": {
+      "@id": "zendit:dateTo",
+      "@type": "xsd:date"
+    },
+    "reportId": {
+      "@id": "zendit:reportId",
+      "@type": "xsd:string"
+    },
+    "downloadUrl": {
+      "@id": "zendit:downloadUrl",
+      "@type": "xsd:string"
+    },
+    "history": {
+      "@id": "zendit:history",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "zendit:timestamp",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

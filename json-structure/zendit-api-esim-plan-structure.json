@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/zendit-api-esim-plan-structure.json",
+  "name": "EsimPlan",
+  "description": "Active or queued eSIM plan.",
+  "type": "object",
+  "properties": {
+    "planId": {
+      "type": "string",
+      "example": "plan-abc123"
+    },
+    "status": {
+      "type": "string",
+      "example": "ACTIVE"
+    },
+    "dataUsed": {
+      "type": "double",
+      "description": "Data used in MB.",
+      "example": 1024.5
+    },
+    "dataTotal": {
+      "type": "double",
+      "description": "Total data in MB.",
+      "example": 5120.0
+    },
+    "validUntil": {
+      "type": "datetime",
+      "example": "2026-06-01T00:00:00Z"
+    }
+  }
+}

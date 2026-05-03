@@ -1,0 +1,28 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "zendit": "https://zendit.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "EsimPlanList": "zendit:EsimPlanList",
+    "EsimPurchaseRequest": "zendit:EsimPurchaseRequest",
+    "iccId": {
+      "@id": "zendit:iccId",
+      "@type": "xsd:string"
+    },
+    "plans": {
+      "@id": "zendit:plans",
+      "@container": "@set",
+      "@type": "xsd:string"
+    },
+    "transactionId": {
+      "@id": "zendit:transactionId",
+      "@type": "xsd:string"
+    },
+    "offerId": {
+      "@id": "zendit:offerId",
+      "@type": "xsd:string"
+    }
+  }
+}

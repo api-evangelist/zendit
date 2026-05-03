@@ -1,0 +1,6 @@
+{
+  "reportId": "report-abc123",
+  "status": "READY",
+  "downloadUrl": "https://api.zendit.io/v1/reports/report-abc123/download",
+  "createdAt": "2026-05-01T12:00:00Z"
+}

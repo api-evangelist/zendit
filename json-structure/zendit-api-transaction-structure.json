@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/zendit-api-transaction-structure.json",
+  "name": "Transaction",
+  "description": "Transaction with history log.",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string",
+      "example": "txn-abc123"
+    },
+    "type": {
+      "type": "string",
+      "example": "TOPUP"
+    },
+    "status": {
+      "type": "string",
+      "example": "DONE"
+    },
+    "createdAt": {
+      "type": "datetime",
+      "example": "2026-05-01T12:00:00Z"
+    },
+    "history": {
+      "type": "array",
+      "description": "Transaction status history.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "PENDING"
+          },
+          "timestamp": {
+            "type": "datetime",
+            "example": "2026-05-01T12:00:00Z"
+          }
+        }
+      },
+      "example": [
+        {
+          "status": "PENDING",
+          "timestamp": "2026-05-01T12:00:00Z"
+        }
+      ]
+    }
+  }
+}

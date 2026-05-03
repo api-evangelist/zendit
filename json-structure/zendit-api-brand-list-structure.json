@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/zendit-api-brand-list-structure.json",
+  "name": "BrandList",
+  "description": "Paginated brand list.",
+  "type": "object",
+  "properties": {
+    "list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Brand"
+      },
+      "example": [
+        {}
+      ]
+    },
+    "offset": {
+      "type": "int32",
+      "example": 0
+    },
+    "limit": {
+      "type": "int32",
+      "example": 100
+    },
+    "total": {
+      "type": "int32",
+      "example": 250
+    }
+  }
+}

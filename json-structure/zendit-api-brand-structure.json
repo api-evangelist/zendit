@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/zendit-api-brand-structure.json",
+  "name": "Brand",
+  "description": "Brand catalog entry.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Brand identifier.",
+      "example": "rebel-prepaid"
+    },
+    "name": {
+      "type": "string",
+      "description": "Brand name.",
+      "example": "Rebel Prepaid"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country code.",
+      "example": "US"
+    },
+    "logoUrl": {
+      "type": "uri",
+      "description": "Brand logo URL.",
+      "example": "https://cdn.zendit.io/logos/rebel.png"
+    },
+    "types": {
+      "type": "array",
+      "description": "Product types offered.",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "Mobile Top Up",
+        "Bundle"
+      ]
+    }
+  }
+}

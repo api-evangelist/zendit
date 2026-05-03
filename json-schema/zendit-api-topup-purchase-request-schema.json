@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TopupPurchaseRequest",
+  "description": "Top-up purchase request.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/zendit-api-topup-purchase-request-schema.json",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string",
+      "description": "Client-provided idempotency key.",
+      "example": "my-txn-abc123"
+    },
+    "offerId": {
+      "type": "string",
+      "description": "Offer to purchase.",
+      "example": "offer-12345"
+    },
+    "subscriberNumber": {
+      "type": "string",
+      "description": "Recipient phone number in E.164 format.",
+      "example": "+15555550100"
+    },
+    "sendValue": {
+      "$ref": "#/components/schemas/Price"
+    }
+  },
+  "required": [
+    "offerId",
+    "subscriberNumber"
+  ]
+}

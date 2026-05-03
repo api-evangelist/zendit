@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Price",
+  "description": "Monetary amount with currency.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/zendit-api-price-schema.json",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "example": 10.0
+    },
+    "currency": {
+      "type": "string",
+      "example": "USD"
+    }
+  }
+}

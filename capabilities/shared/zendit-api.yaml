@@ -1,0 +1,416 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Zendit API
+  description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM 
+    products through a unified integration.
+  tags:
+    - Account
+    - Brands
+    - Mobile Top-Up
+    - ESIM
+    - Vouchers
+    - Transactions
+    - Tools
+    - Reports
+  created: '2026-05-03'
+  modified: '2026-05-03'
+capability:
+  consumes:
+    - type: http
+      namespace: api
+      baseUri: https://api.zendit.io/v1
+      description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM
+        products through a unified integration.
+      resources:
+        - name: api
+          path: /
+          description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and 
+            eSIM products through a unified integration.
+          operations:
+            - name: get-balance
+              method: GET
+              path: /balance
+              description: Zendit Get Balance
+              inputParameters: []
+              outputRawFormat: json
+            - name: list-brands
+              method: GET
+              path: /brands
+              description: Zendit List Brands
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: get-brand
+              method: GET
+              path: /brands/{brand}
+              description: Zendit Get Brand
+              inputParameters:
+                - name: brand
+                  in: path
+                  type: string
+                  required: true
+                  description: ''
+              outputRawFormat: json
+            - name: get-brand-redemption-instructions
+              method: GET
+              path: /brands/{brand}/redemptionInstructions
+              description: Zendit Get Brand Redemption Instructions
+              inputParameters:
+                - name: brand
+                  in: path
+                  type: string
+                  required: true
+                  description: ''
+              outputRawFormat: json
+            - name: list-topup-offers
+              method: GET
+              path: /topups/offers
+              description: Zendit List Topup Offers
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: brand
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: subType
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: get-topup-offer
+              method: GET
+              path: /topups/offers/{offerId}
+              description: Zendit Get Topup Offer
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: list-topup-purchases
+              method: GET
+              path: /topups/purchases
+              description: Zendit List Topup Purchases
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: create-topup-purchase
+              method: POST
+              path: /topups/purchases
+              description: Zendit Create Topup Purchase
+              inputParameters: []
+              outputRawFormat: json
+            - name: get-topup-purchase
+              method: GET
+              path: /topups/purchases/{transactionId}
+              description: Zendit Get Topup Purchase
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: list-esim-offers
+              method: GET
+              path: /esim/offers
+              description: Zendit List ESIM Offers
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: regions
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: get-esim-offer
+              method: GET
+              path: /esim/offers/{offerId}
+              description: Zendit Get ESIM Offer
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: list-esim-purchases
+              method: GET
+              path: /esim/purchases
+              description: Zendit List ESIM Purchases
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: create-esim-purchase
+              method: POST
+              path: /esim/purchases
+              description: Zendit Create ESIM Purchase
+              inputParameters: []
+              outputRawFormat: json
+            - name: get-esim-purchase
+              method: GET
+              path: /esim/purchases/{transactionId}
+              description: Zendit Get ESIM Purchase
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: get-esim-qr-code
+              method: GET
+              path: /esim/purchases/{transactionId}/qrcode
+              description: Zendit Get ESIM QR Code
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: get-esim-plans
+              method: GET
+              path: /esim/{iccId}/plans
+              description: Zendit Get ESIM Plans
+              inputParameters:
+                - name: iccId
+                  in: path
+                  type: string
+                  required: true
+                  description: ''
+              outputRawFormat: json
+            - name: get-esim-refund
+              method: GET
+              path: /esim/purchases/{transactionId}/refund
+              description: Zendit Get ESIM Refund
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: create-esim-refund
+              method: POST
+              path: /esim/purchases/{transactionId}/refund
+              description: Zendit Create ESIM Refund
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: list-voucher-offers
+              method: GET
+              path: /vouchers/offers
+              description: Zendit List Voucher Offers
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: get-voucher-offer
+              method: GET
+              path: /vouchers/offers/{offerId}
+              description: Zendit Get Voucher Offer
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: list-voucher-purchases
+              method: GET
+              path: /vouchers/purchases
+              description: Zendit List Voucher Purchases
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: create-voucher-purchase
+              method: POST
+              path: /vouchers/purchases
+              description: Zendit Create Voucher Purchase
+              inputParameters: []
+              outputRawFormat: json
+            - name: get-voucher-purchase
+              method: GET
+              path: /vouchers/purchases/{transactionId}
+              description: Zendit Get Voucher Purchase
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: list-transactions
+              method: GET
+              path: /transactions
+              description: Zendit List Transactions
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: get-transaction
+              method: GET
+              path: /transactions/{transactionId}
+              description: Zendit Get Transaction
+              inputParameters:
+                - name: param
+                  in: query
+                  type: string
+                  required: false
+                  description: ''
+              outputRawFormat: json
+            - name: lookup-phone-number
+              method: GET
+              path: /tools/phonenumberlookup/{msisdn}
+              description: Zendit Lookup Phone Number
+              inputParameters:
+                - name: msisdn
+                  in: path
+                  type: string
+                  required: true
+                  description: ''
+              outputRawFormat: json
+            - name: create-report
+              method: POST
+              path: /reports
+              description: Zendit Create Report
+              inputParameters: []
+              outputRawFormat: json
+            - name: get-report
+              method: GET
+              path: /reports/{reportId}
+              description: Zendit Get Report
+              inputParameters:
+                - name: reportId
+                  in: path
+                  type: string
+                  required: true
+                  description: ''
+              outputRawFormat: json
+            - name: download-report
+              method: GET
+              path: /reports/{reportId}/download
+              description: Zendit Download Report
+              inputParameters:
+                - name: reportId
+                  in: path
+                  type: string
+                  required: true
+                  description: ''
+              outputRawFormat: json
+      authentication:
+        type: bearer
+        token: '{{TOKEN}}'

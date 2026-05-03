@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TransactionList",
+  "description": "Paginated transaction list.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/zendit-api-transaction-list-schema.json",
+  "type": "object",
+  "properties": {
+    "list": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Transaction"
+      },
+      "example": [
+        {}
+      ]
+    },
+    "offset": {
+      "type": "integer",
+      "example": 100
+    },
+    "limit": {
+      "type": "integer",
+      "example": 100
+    },
+    "total": {
+      "type": "integer",
+      "example": 100
+    }
+  }
+}

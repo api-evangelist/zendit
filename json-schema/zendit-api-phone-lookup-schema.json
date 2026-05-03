@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PhoneLookup",
+  "description": "Phone number carrier lookup result.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/zendit-api-phone-lookup-schema.json",
+  "type": "object",
+  "properties": {
+    "msisdn": {
+      "type": "string",
+      "example": "+15555550100"
+    },
+    "country": {
+      "type": "string",
+      "example": "US"
+    },
+    "carrier": {
+      "type": "string",
+      "example": "Example Mobile"
+    },
+    "brand": {
+      "type": "string",
+      "example": "rebel-prepaid"
+    },
+    "type": {
+      "type": "string",
+      "example": "MOBILE"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EsimPlan",
+  "description": "Active or queued eSIM plan.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/zendit-api-esim-plan-schema.json",
+  "type": "object",
+  "properties": {
+    "planId": {
+      "type": "string",
+      "example": "plan-abc123"
+    },
+    "status": {
+      "type": "string",
+      "example": "ACTIVE"
+    },
+    "dataUsed": {
+      "type": "number",
+      "description": "Data used in MB.",
+      "example": 1024.5
+    },
+    "dataTotal": {
+      "type": "number",
+      "description": "Total data in MB.",
+      "example": 5120.0
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time",
+      "example": "2026-06-01T00:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "zendit": "https://zendit.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "VoucherPurchaseRequest": "zendit:VoucherPurchaseRequest",
+    "transactionId": {
+      "@id": "zendit:transactionId",
+      "@type": "xsd:string"
+    },
+    "offerId": {
+      "@id": "zendit:offerId",
+      "@type": "xsd:string"
+    },
+    "sendValue": {
+      "@id": "zendit:sendValue",
+      "@type": "xsd:string"
+    },
+    "recipient": {
+      "@id": "zendit:recipient",
+      "@type": "@id"
+    },
+    "email": "schema:email",
+    "firstName": {
+      "@id": "zendit:firstName",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "zendit:lastName",
+      "@type": "xsd:string"
+    }
+  }
+}

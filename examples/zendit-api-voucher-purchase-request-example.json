@@ -1,0 +1,10 @@
+{
+  "transactionId": "my-txn-abc123",
+  "offerId": "voucher-offer-001",
+  "sendValue": "example-value",
+  "recipient": {
+    "email": "recipient@example.com",
+    "firstName": "Jane",
+    "lastName": "Smith"
+  }
+}

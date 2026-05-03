@@ -1,0 +1,7 @@
+{
+  "planId": "plan-abc123",
+  "status": "ACTIVE",
+  "dataUsed": 1024.5,
+  "dataTotal": 5120.0,
+  "validUntil": "2026-06-01T00:00:00Z"
+}

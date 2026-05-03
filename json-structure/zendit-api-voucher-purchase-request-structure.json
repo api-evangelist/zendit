@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/zendit-api-voucher-purchase-request-structure.json",
+  "name": "VoucherPurchaseRequest",
+  "description": "Voucher purchase request.",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string",
+      "example": "my-txn-abc123"
+    },
+    "offerId": {
+      "type": "string",
+      "example": "voucher-offer-001"
+    },
+    "sendValue": {
+      "$ref": "#/components/schemas/Price"
+    },
+    "recipient": {
+      "type": "object",
+      "description": "Recipient details.",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "recipient@example.com"
+        },
+        "firstName": {
+          "type": "string",
+          "example": "Jane"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Smith"
+        }
+      },
+      "example": {
+        "email": "recipient@example.com",
+        "firstName": "Jane",
+        "lastName": "Smith"
+      }
+    }
+  },
+  "required": [
+    "offerId"
+  ]
+}

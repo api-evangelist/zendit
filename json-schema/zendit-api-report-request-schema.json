@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ReportRequest",
+  "description": "Asynchronous report generation request.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/zendit-api-report-request-schema.json",
+  "type": "object",
+  "properties": {
+    "dateFrom": {
+      "type": "string",
+      "format": "date",
+      "example": "2026-04-01"
+    },
+    "dateTo": {
+      "type": "string",
+      "format": "date",
+      "example": "2026-04-30"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "TRANSACTIONS",
+        "BALANCE",
+        "COMMISSION"
+      ],
+      "example": "TRANSACTIONS"
+    }
+  },
+  "required": [
+    "dateFrom",
+    "dateTo"
+  ]
+}

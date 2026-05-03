@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/zendit-api-redemption-instructions-structure.json",
+  "name": "RedemptionInstructions",
+  "description": "Brand redemption terms by delivery type.",
+  "type": "object",
+  "properties": {
+    "deliveryType": {
+      "type": "string",
+      "example": "SMS"
+    },
+    "instructions": {
+      "type": "string",
+      "example": "Dial *123# from your phone to redeem."
+    },
+    "termsAndConditions": {
+      "type": "string",
+      "example": "Valid for 30 days from purchase."
+    }
+  }
+}

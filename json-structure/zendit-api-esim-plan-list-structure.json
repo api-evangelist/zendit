@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/zendit-api-esim-plan-list-structure.json",
+  "name": "EsimPlanList",
+  "description": "List of eSIM plans for an ICC ID.",
+  "type": "object",
+  "properties": {
+    "iccId": {
+      "type": "string",
+      "example": "8901260000000000001"
+    },
+    "plans": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/EsimPlan"
+      },
+      "example": [
+        {}
+      ]
+    }
+  }
+}

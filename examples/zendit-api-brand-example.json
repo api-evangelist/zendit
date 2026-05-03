@@ -1,0 +1,10 @@
+{
+  "id": "rebel-prepaid",
+  "name": "Rebel Prepaid",
+  "country": "US",
+  "logoUrl": "https://cdn.zendit.io/logos/rebel.png",
+  "types": [
+    "Mobile Top Up",
+    "Bundle"
+  ]
+}

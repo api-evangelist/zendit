@@ -1,0 +1,6 @@
+{
+  "transactionId": "my-txn-abc123",
+  "offerId": "offer-12345",
+  "subscriberNumber": "+15555550100",
+  "sendValue": "example-value"
+}

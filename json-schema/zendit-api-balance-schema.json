@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Balance",
+  "description": "Wallet balance and currency information.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/zendit-api-balance-schema.json",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number",
+      "description": "Available balance amount.",
+      "example": 1234.56
+    },
+    "currency": {
+      "type": "string",
+      "description": "ISO 4217 currency code.",
+      "example": "USD"
+    },
+    "accountId": {
+      "type": "string",
+      "description": "Account identifier.",
+      "example": "acc-12345"
+    }
+  }
+}
