@@ -52,7 +52,7 @@ apis:
         url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/
       - type: JSONStructure
         url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
-      - type: JSON-LD
+      - type: JSONLD
         url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
       - type: Example
         url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
