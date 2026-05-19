@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zendit API — Account
+  description: 'Zendit API — Account. 1 operations. Lead operation: Zendit Get Balance. Self-contained Naftiko capability
+    covering one Zendit business surface.'
+  tags:
+  - Zendit
+  - Account
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZENDIT_API_KEY: ZENDIT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: zendit-account
+    baseUri: https://api.zendit.io/v1
+    description: Zendit API — Account business capability. Self-contained, no shared references.
+    resources:
+    - name: balance
+      path: /balance
+      operations:
+      - name: getbalance
+        method: GET
+        description: Zendit Get Balance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ZENDIT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: zendit-account-rest
+    port: 8080
+    description: REST adapter for Zendit API — Account. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/balance
+      name: balance
+      description: REST surface for balance.
+      operations:
+      - method: GET
+        name: getbalance
+        description: Zendit Get Balance
+        call: zendit-account.getbalance
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: zendit-account-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zendit API — Account. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zendit-get-balance
+      description: Zendit Get Balance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-account.getbalance
+      outputParameters:
+      - type: object
+        mapping: $.

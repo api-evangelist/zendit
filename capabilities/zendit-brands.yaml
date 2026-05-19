@@ -1,0 +1,152 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zendit API — Brands
+  description: 'Zendit API — Brands. 3 operations. Lead operation: Zendit List Brands. Self-contained Naftiko capability covering
+    one Zendit business surface.'
+  tags:
+  - Zendit
+  - Brands
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZENDIT_API_KEY: ZENDIT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: zendit-brands
+    baseUri: https://api.zendit.io/v1
+    description: Zendit API — Brands business capability. Self-contained, no shared references.
+    resources:
+    - name: brands
+      path: /brands
+      operations:
+      - name: listbrands
+        method: GET
+        description: Zendit List Brands
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: brands-brand
+      path: /brands/{brand}
+      operations:
+      - name: getbrand
+        method: GET
+        description: Zendit Get Brand
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: brand
+          in: path
+          type: string
+          required: true
+    - name: brands-brand-redemptionInstructions
+      path: /brands/{brand}/redemptionInstructions
+      operations:
+      - name: getbrandredemptioninstructions
+        method: GET
+        description: Zendit Get Brand Redemption Instructions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: brand
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ZENDIT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: zendit-brands-rest
+    port: 8080
+    description: REST adapter for Zendit API — Brands. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/brands
+      name: brands
+      description: REST surface for brands.
+      operations:
+      - method: GET
+        name: listbrands
+        description: Zendit List Brands
+        call: zendit-brands.listbrands
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/brands/{brand}
+      name: brands-brand
+      description: REST surface for brands-brand.
+      operations:
+      - method: GET
+        name: getbrand
+        description: Zendit Get Brand
+        call: zendit-brands.getbrand
+        with:
+          brand: rest.brand
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/brands/{brand}/redemptioninstructions
+      name: brands-brand-redemptioninstructions
+      description: REST surface for brands-brand-redemptionInstructions.
+      operations:
+      - method: GET
+        name: getbrandredemptioninstructions
+        description: Zendit Get Brand Redemption Instructions
+        call: zendit-brands.getbrandredemptioninstructions
+        with:
+          brand: rest.brand
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: zendit-brands-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zendit API — Brands. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zendit-list-brands
+      description: Zendit List Brands
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-brands.listbrands
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zendit-get-brand
+      description: Zendit Get Brand
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-brands.getbrand
+      with:
+        brand: tools.brand
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zendit-get-brand-redemption-instructions
+      description: Zendit Get Brand Redemption Instructions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-brands.getbrandredemptioninstructions
+      with:
+        brand: tools.brand
+      outputParameters:
+      - type: object
+        mapping: $.

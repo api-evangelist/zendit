@@ -1,0 +1,339 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Zendit API — eSIM
+  description: 'Zendit API — eSIM. 9 operations. Lead operation: Zendit List ESIM Offers. Self-contained Naftiko capability
+    covering one Zendit business surface.'
+  tags:
+  - Zendit
+  - eSIM
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ZENDIT_API_KEY: ZENDIT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: zendit-esim
+    baseUri: https://api.zendit.io/v1
+    description: Zendit API — eSIM business capability. Self-contained, no shared references.
+    resources:
+    - name: esim-offers
+      path: /esim/offers
+      operations:
+      - name: listesimoffers
+        method: GET
+        description: Zendit List ESIM Offers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: regions
+          in: query
+          type: string
+    - name: esim-offers-offerId
+      path: /esim/offers/{offerId}
+      operations:
+      - name: getesimoffer
+        method: GET
+        description: Zendit Get ESIM Offer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: esim-purchases
+      path: /esim/purchases
+      operations:
+      - name: listesimpurchases
+        method: GET
+        description: Zendit List ESIM Purchases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createesimpurchase
+        method: POST
+        description: Zendit Create ESIM Purchase
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: esim-purchases-transactionId
+      path: /esim/purchases/{transactionId}
+      operations:
+      - name: getesimpurchase
+        method: GET
+        description: Zendit Get ESIM Purchase
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: esim-purchases-transactionId-qrcode
+      path: /esim/purchases/{transactionId}/qrcode
+      operations:
+      - name: getesimqrcode
+        method: GET
+        description: Zendit Get ESIM QR Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: esim-purchases-transactionId-refund
+      path: /esim/purchases/{transactionId}/refund
+      operations:
+      - name: getesimrefund
+        method: GET
+        description: Zendit Get ESIM Refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createesimrefund
+        method: POST
+        description: Zendit Create ESIM Refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: esim-iccId-plans
+      path: /esim/{iccId}/plans
+      operations:
+      - name: getesimplans
+        method: GET
+        description: Zendit Get ESIM Plans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: iccId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ZENDIT_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: zendit-esim-rest
+    port: 8080
+    description: REST adapter for Zendit API — eSIM. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/esim/offers
+      name: esim-offers
+      description: REST surface for esim-offers.
+      operations:
+      - method: GET
+        name: listesimoffers
+        description: Zendit List ESIM Offers
+        call: zendit-esim.listesimoffers
+        with:
+          regions: rest.regions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/esim/offers/{offerid}
+      name: esim-offers-offerid
+      description: REST surface for esim-offers-offerId.
+      operations:
+      - method: GET
+        name: getesimoffer
+        description: Zendit Get ESIM Offer
+        call: zendit-esim.getesimoffer
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/esim/purchases
+      name: esim-purchases
+      description: REST surface for esim-purchases.
+      operations:
+      - method: GET
+        name: listesimpurchases
+        description: Zendit List ESIM Purchases
+        call: zendit-esim.listesimpurchases
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createesimpurchase
+        description: Zendit Create ESIM Purchase
+        call: zendit-esim.createesimpurchase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/esim/purchases/{transactionid}
+      name: esim-purchases-transactionid
+      description: REST surface for esim-purchases-transactionId.
+      operations:
+      - method: GET
+        name: getesimpurchase
+        description: Zendit Get ESIM Purchase
+        call: zendit-esim.getesimpurchase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/esim/purchases/{transactionid}/qrcode
+      name: esim-purchases-transactionid-qrcode
+      description: REST surface for esim-purchases-transactionId-qrcode.
+      operations:
+      - method: GET
+        name: getesimqrcode
+        description: Zendit Get ESIM QR Code
+        call: zendit-esim.getesimqrcode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/esim/purchases/{transactionid}/refund
+      name: esim-purchases-transactionid-refund
+      description: REST surface for esim-purchases-transactionId-refund.
+      operations:
+      - method: GET
+        name: getesimrefund
+        description: Zendit Get ESIM Refund
+        call: zendit-esim.getesimrefund
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createesimrefund
+        description: Zendit Create ESIM Refund
+        call: zendit-esim.createesimrefund
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/esim/{iccid}/plans
+      name: esim-iccid-plans
+      description: REST surface for esim-iccId-plans.
+      operations:
+      - method: GET
+        name: getesimplans
+        description: Zendit Get ESIM Plans
+        call: zendit-esim.getesimplans
+        with:
+          iccId: rest.iccId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: zendit-esim-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Zendit API — eSIM. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: zendit-list-esim-offers
+      description: Zendit List ESIM Offers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-esim.listesimoffers
+      with:
+        regions: tools.regions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zendit-get-esim-offer
+      description: Zendit Get ESIM Offer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-esim.getesimoffer
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zendit-list-esim-purchases
+      description: Zendit List ESIM Purchases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-esim.listesimpurchases
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zendit-create-esim-purchase
+      description: Zendit Create ESIM Purchase
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: zendit-esim.createesimpurchase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zendit-get-esim-purchase
+      description: Zendit Get ESIM Purchase
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-esim.getesimpurchase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zendit-get-esim-qr-code
+      description: Zendit Get ESIM QR Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-esim.getesimqrcode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zendit-get-esim-refund
+      description: Zendit Get ESIM Refund
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-esim.getesimrefund
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zendit-create-esim-refund
+      description: Zendit Create ESIM Refund
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: zendit-esim.createesimrefund
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: zendit-get-esim-plans
+      description: Zendit Get ESIM Plans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: zendit-esim.getesimplans
+      with:
+        iccId: tools.iccId
+      outputParameters:
+      - type: object
+        mapping: $.
