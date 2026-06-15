@@ -1,0 +1,816 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zendit API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit Get Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/balance",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve wallet balance and currency information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Brands",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit List Brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/brands",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "country",
+                "value": "US",
+                "type": "query",
+                "description": "Two-letter ISO country code."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List available brands with pagination and optional country filtering."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Brand",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/brands/:brand",
+            "params": [
+              {
+                "name": "brand",
+                "value": "rebel-prepaid",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get brand details, logos, and metadata."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Brand Redemption Instructions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/brands/:brand/redemptionInstructions",
+            "params": [
+              {
+                "name": "brand",
+                "value": "example-value",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetch redemption terms and conditions by delivery type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Mobile Top-Up",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit List Topup Offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/topups/offers",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "country",
+                "value": "US",
+                "type": "query",
+                "description": "Two-letter ISO country code."
+              },
+              {
+                "name": "brand",
+                "value": "example-value",
+                "type": "query"
+              },
+              {
+                "name": "subType",
+                "value": "Mobile Top Up",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List top-up, bundle, and data offers with filters."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Topup Offer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/topups/offers/:offerId",
+            "params": [
+              {
+                "name": "offerId",
+                "value": "offer-12345",
+                "type": "path",
+                "description": "Offer identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve specific top-up offer details."
+        },
+        {
+          "info": {
+            "name": "Zendit List Topup Purchases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/topups/purchases",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "status",
+                "value": "DONE",
+                "type": "query",
+                "description": "Transaction status filter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Query top-up transactions with date and status filters."
+        },
+        {
+          "info": {
+            "name": "Zendit Create Topup Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zendit.io/v1/topups/purchases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create new top-up transaction."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Topup Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/topups/purchases/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetch top-up transaction status."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "eSIM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit List ESIM Offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/offers",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "country",
+                "value": "US",
+                "type": "query",
+                "description": "Two-letter ISO country code."
+              },
+              {
+                "name": "regions",
+                "value": "Global",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Browse eSIM plans by region or country."
+        },
+        {
+          "info": {
+            "name": "Zendit Get ESIM Offer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/offers/:offerId",
+            "params": [
+              {
+                "name": "offerId",
+                "value": "offer-12345",
+                "type": "path",
+                "description": "Offer identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get eSIM plan specifications."
+        },
+        {
+          "info": {
+            "name": "Zendit List ESIM Purchases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/purchases",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "status",
+                "value": "DONE",
+                "type": "query",
+                "description": "Transaction status filter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List eSIM transactions."
+        },
+        {
+          "info": {
+            "name": "Zendit Create ESIM Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zendit.io/v1/esim/purchases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Purchase new eSIM or add plan to existing eSIM."
+        },
+        {
+          "info": {
+            "name": "Zendit Get ESIM Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/purchases/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check eSIM transaction status."
+        },
+        {
+          "info": {
+            "name": "Zendit Get ESIM QR Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/purchases/:transactionId/qrcode",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve activation QR code as PNG image."
+        },
+        {
+          "info": {
+            "name": "Zendit Get ESIM Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/:iccId/plans",
+            "params": [
+              {
+                "name": "iccId",
+                "value": "8901260000000000001",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Monitor active/queued plans and data usage."
+        },
+        {
+          "info": {
+            "name": "Zendit Get ESIM Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/purchases/:transactionId/refund",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check refund status for eSIM purchase."
+        },
+        {
+          "info": {
+            "name": "Zendit Create ESIM Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zendit.io/v1/esim/purchases/:transactionId/refund",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate refund request for eSIM purchase."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Vouchers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit List Voucher Offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/vouchers/offers",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "country",
+                "value": "US",
+                "type": "query",
+                "description": "Two-letter ISO country code."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List gift card and utility offers."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Voucher Offer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/vouchers/offers/:offerId",
+            "params": [
+              {
+                "name": "offerId",
+                "value": "offer-12345",
+                "type": "path",
+                "description": "Offer identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get voucher offer details with required fields."
+        },
+        {
+          "info": {
+            "name": "Zendit List Voucher Purchases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/vouchers/purchases",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Query voucher transactions."
+        },
+        {
+          "info": {
+            "name": "Zendit Create Voucher Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zendit.io/v1/vouchers/purchases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create gift card or utility payment transaction."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Voucher Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/vouchers/purchases/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve voucher transaction with receipt data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit List Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/transactions",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "status",
+                "value": "DONE",
+                "type": "query",
+                "description": "Transaction status filter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all transactions across product types."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get transaction with full history log."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit Lookup Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/tools/phonenumberlookup/:msisdn",
+            "params": [
+              {
+                "name": "msisdn",
+                "value": "+15555550100",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Identify carrier from phone number in E.164 format. BETA endpoint."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit Create Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zendit.io/v1/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate transaction report (CSV) asynchronously."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check report generation status."
+        },
+        {
+          "info": {
+            "name": "Zendit Download Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/reports/:reportId/download",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download completed report file (CSV)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
