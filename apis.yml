@@ -51,7 +51,7 @@ apis:
         url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
       - type: JSONLD
         url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
-      - type: Example
+      - type: Examples
         url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
 common:
   - type: LinkedIn
