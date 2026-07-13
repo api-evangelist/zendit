@@ -1,8 +1,8 @@
 ---
-title: 'Introducing AwardVisa: The Simple, Global Way to Reward and Recognize'
-url: https://zendit.io/introducing-awardvisa-the-simple-global-way-to-reward-and-recognize/
-date: '2025-09-05'
-author: Don Kutbay
-feed_url: https://zendit.io/feed/
+title: "Introducing AwardVisa: The Simple, Global Way to Reward and Recognize"
+url: "https://zendit.io/introducing-awardvisa-the-simple-global-way-to-reward-and-recognize/"
+date: "2025-09-05"
+author: ""
+feed_url: "https://zendit.io/blog/"
 ---
-We’re proud to launch Award Visa - a digital Visa card built for businesses The post Introducing AwardVisa: The Simple, Global Way to Reward and Recognize appeared first on zendit .
+zendit launches AwardVisa, a digital Visa card designed specifically for business rewards and recognition programs, giving companies a simple global way to reward employees and partners.
