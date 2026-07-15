@@ -54,6 +54,8 @@ apis:
       - type: Examples
         url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
 common:
+  - type: AgenticAccess
+    url: agentic-access/zendit-agentic-access.yml
   - type: DomainSecurity
     url: security/zendit-domain-security.yml
   - type: Authentication
