@@ -1,0 +1,421 @@
+openapi: 3.0.3
+info:
+  title: Zendit Account Vouchers API
+  description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
+  version: 1.0.0
+  x-generated-from: documentation
+  x-source-url: https://developers.zendit.io/api/
+  contact:
+    name: Zendit
+    url: https://zendit.io
+servers:
+- url: https://api.zendit.io/v1
+  description: Zendit Production
+tags:
+- name: Vouchers
+  description: Digital gift cards and utility bill payments
+paths:
+  /vouchers/offers:
+    get:
+      operationId: listVoucherOffers
+      summary: Zendit List Voucher Offers
+      description: List gift card and utility offers.
+      tags:
+      - Vouchers
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Country'
+      responses:
+        '200':
+          description: List of voucher offers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferList'
+              examples:
+                ListVoucherOffers200Example:
+                  summary: Default listVoucherOffers 200 response
+                  x-microcks-default: true
+                  value:
+                    list:
+                    - {}
+                    offset: 0
+                    limit: 100
+                    total: 1500
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /vouchers/offers/{offerId}:
+    get:
+      operationId: getVoucherOffer
+      summary: Zendit Get Voucher Offer
+      description: Get voucher offer details with required fields.
+      tags:
+      - Vouchers
+      parameters:
+      - $ref: '#/components/parameters/OfferId'
+      responses:
+        '200':
+          description: Voucher offer detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+              examples:
+                GetVoucherOffer200Example:
+                  summary: Default getVoucherOffer 200 response
+                  x-microcks-default: true
+                  value:
+                    offerId: offer-12345
+                    name: Rebel Prepaid 10 USD
+                    brand: rebel-prepaid
+                    country: US
+                    type: TOPUP
+                    subType: Mobile Top Up
+                    price:
+                      amount: {}
+                      currency: {}
+                    send:
+                      amount: {}
+                      currency: {}
+                    receive:
+                      amount: {}
+                      currency: {}
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /vouchers/purchases:
+    get:
+      operationId: listVoucherPurchases
+      summary: Zendit List Voucher Purchases
+      description: Query voucher transactions.
+      tags:
+      - Vouchers
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      responses:
+        '200':
+          description: List of voucher purchases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseList'
+              examples:
+                ListVoucherPurchases200Example:
+                  summary: Default listVoucherPurchases 200 response
+                  x-microcks-default: true
+                  value:
+                    list:
+                    - {}
+                    offset: 0
+                    limit: 100
+                    total: 50
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createVoucherPurchase
+      summary: Zendit Create Voucher Purchase
+      description: Create gift card or utility payment transaction.
+      tags:
+      - Vouchers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoucherPurchaseRequest'
+            examples:
+              CreateVoucherPurchaseRequestExample:
+                summary: Default createVoucherPurchase request
+                x-microcks-default: true
+                value:
+                  transactionId: my-txn-abc123
+                  offerId: voucher-offer-001
+                  sendValue:
+                    amount: {}
+                    currency: {}
+                  recipient:
+                    email: recipient@example.com
+                    firstName: Jane
+                    lastName: Smith
+      responses:
+        '201':
+          description: Voucher purchase created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchase'
+              examples:
+                CreateVoucherPurchase201Example:
+                  summary: Default createVoucherPurchase 201 response
+                  x-microcks-default: true
+                  value:
+                    transactionId: txn-abc123
+                    offerId: offer-12345
+                    status: DONE
+                    type: TOPUP
+                    createdAt: '2026-05-01T12:00:00Z'
+                    send:
+                      amount: {}
+                      currency: {}
+                    receive:
+                      amount: {}
+                      currency: {}
+                    details: {}
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /vouchers/purchases/{transactionId}:
+    get:
+      operationId: getVoucherPurchase
+      summary: Zendit Get Voucher Purchase
+      description: Retrieve voucher transaction with receipt data.
+      tags:
+      - Vouchers
+      parameters:
+      - $ref: '#/components/parameters/TransactionId'
+      responses:
+        '200':
+          description: Voucher purchase detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchase'
+              examples:
+                GetVoucherPurchase200Example:
+                  summary: Default getVoucherPurchase 200 response
+                  x-microcks-default: true
+                  value:
+                    transactionId: txn-abc123
+                    offerId: offer-12345
+                    status: DONE
+                    type: TOPUP
+                    createdAt: '2026-05-01T12:00:00Z'
+                    send:
+                      amount: {}
+                      currency: {}
+                    receive:
+                      amount: {}
+                      currency: {}
+                    details: {}
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Offer:
+      type: object
+      description: Product offer (top-up, eSIM, voucher).
+      properties:
+        offerId:
+          type: string
+          description: Unique offer identifier.
+          example: offer-12345
+        name:
+          type: string
+          description: Offer display name.
+          example: Rebel Prepaid 10 USD
+        brand:
+          type: string
+          description: Brand identifier.
+          example: rebel-prepaid
+        country:
+          type: string
+          description: Country code.
+          example: US
+        type:
+          type: string
+          description: Offer type.
+          example: TOPUP
+        subType:
+          type: string
+          description: Offer sub-type.
+          example: Mobile Top Up
+        price:
+          $ref: '#/components/schemas/Price'
+        send:
+          $ref: '#/components/schemas/Price'
+        receive:
+          $ref: '#/components/schemas/Price'
+    Purchase:
+      type: object
+      description: Purchase transaction.
+      properties:
+        transactionId:
+          type: string
+          example: txn-abc123
+        offerId:
+          type: string
+          example: offer-12345
+        status:
+          type: string
+          enum:
+          - DONE
+          - FAILED
+          - PENDING
+          - ACCEPTED
+          - AUTHORIZED
+          - IN_PROGRESS
+          example: DONE
+        type:
+          type: string
+          example: TOPUP
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-05-01T12:00:00Z'
+        send:
+          $ref: '#/components/schemas/Price'
+        receive:
+          $ref: '#/components/schemas/Price'
+        details:
+          type: object
+          additionalProperties: true
+          description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
+          example: {}
+    VoucherPurchaseRequest:
+      type: object
+      description: Voucher purchase request.
+      required:
+      - offerId
+      properties:
+        transactionId:
+          type: string
+          example: my-txn-abc123
+        offerId:
+          type: string
+          example: voucher-offer-001
+        sendValue:
+          $ref: '#/components/schemas/Price'
+        recipient:
+          type: object
+          description: Recipient details.
+          properties:
+            email:
+              type: string
+              format: email
+              example: recipient@example.com
+            firstName:
+              type: string
+              example: Jane
+            lastName:
+              type: string
+              example: Smith
+          example:
+            email: recipient@example.com
+            firstName: Jane
+            lastName: Smith
+    PurchaseList:
+      type: object
+      description: Paginated purchase list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 50
+    OfferList:
+      type: object
+      description: Paginated offer list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 1500
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
+  parameters:
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
+    OfferId:
+      name: offerId
+      in: path
+      required: true
+      description: Offer identifier.
+      schema:
+        type: string
+      example: offer-12345
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: Bearer token authentication using your Zendit API key.

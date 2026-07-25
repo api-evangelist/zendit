@@ -1,0 +1,95 @@
+openapi: 3.0.3
+info:
+  title: Zendit Account API
+  description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
+  version: 1.0.0
+  x-generated-from: documentation
+  x-source-url: https://developers.zendit.io/api/
+  contact:
+    name: Zendit
+    url: https://zendit.io
+servers:
+- url: https://api.zendit.io/v1
+  description: Zendit Production
+tags:
+- name: Account
+  description: Wallet balance and account information
+paths:
+  /balance:
+    get:
+      operationId: getBalance
+      summary: Zendit Get Balance
+      description: Retrieve wallet balance and currency information.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: Wallet balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Balance'
+              examples:
+                GetBalance200Example:
+                  summary: Default getBalance 200 response
+                  x-microcks-default: true
+                  value:
+                    amount: 1234.56
+                    currency: USD
+                    accountId: acc-12345
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetBalance401Example:
+                  summary: Default getBalance 401 response
+                  x-microcks-default: true
+                  value:
+                    code: INVALID_REQUEST
+                    description: The request is missing required parameter offerId.
+                    message: offerId is required.
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Balance:
+      type: object
+      description: Wallet balance and currency information.
+      properties:
+        amount:
+          type: number
+          description: Available balance amount.
+          example: 1234.56
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+          example: USD
+        accountId:
+          type: string
+          description: Account identifier.
+          example: acc-12345
+    Error:
+      type: object
+      description: Error response.
+      properties:
+        code:
+          type: string
+          example: INVALID_REQUEST
+        description:
+          type: string
+          example: The request is missing required parameter offerId.
+        message:
+          type: string
+          example: offerId is required.
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: Bearer token authentication using your Zendit API key.

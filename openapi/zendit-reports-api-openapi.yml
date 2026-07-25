@@ -1,0 +1,174 @@
+openapi: 3.0.3
+info:
+  title: Zendit Account Reports API
+  description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
+  version: 1.0.0
+  x-generated-from: documentation
+  x-source-url: https://developers.zendit.io/api/
+  contact:
+    name: Zendit
+    url: https://zendit.io
+servers:
+- url: https://api.zendit.io/v1
+  description: Zendit Production
+tags:
+- name: Reports
+  description: Transaction reporting
+paths:
+  /reports:
+    post:
+      operationId: createReport
+      summary: Zendit Create Report
+      description: Generate transaction report (CSV) asynchronously.
+      tags:
+      - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+            examples:
+              CreateReportRequestExample:
+                summary: Default createReport request
+                x-microcks-default: true
+                value:
+                  dateFrom: '2026-04-01'
+                  dateTo: '2026-04-30'
+                  type: TRANSACTIONS
+      responses:
+        '202':
+          description: Report job accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+              examples:
+                CreateReport202Example:
+                  summary: Default createReport 202 response
+                  x-microcks-default: true
+                  value:
+                    reportId: report-abc123
+                    status: READY
+                    downloadUrl: https://api.zendit.io/v1/reports/report-abc123/download
+                    createdAt: '2026-05-01T12:00:00Z'
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reports/{reportId}:
+    get:
+      operationId: getReport
+      summary: Zendit Get Report
+      description: Check report generation status.
+      tags:
+      - Reports
+      parameters:
+      - name: reportId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      responses:
+        '200':
+          description: Report detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Report'
+              examples:
+                GetReport200Example:
+                  summary: Default getReport 200 response
+                  x-microcks-default: true
+                  value:
+                    reportId: report-abc123
+                    status: READY
+                    downloadUrl: https://api.zendit.io/v1/reports/report-abc123/download
+                    createdAt: '2026-05-01T12:00:00Z'
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /reports/{reportId}/download:
+    get:
+      operationId: downloadReport
+      summary: Zendit Download Report
+      description: Download completed report file (CSV).
+      tags:
+      - Reports
+      parameters:
+      - name: reportId
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '500123'
+      responses:
+        '200':
+          description: CSV report file
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ReportRequest:
+      type: object
+      description: Asynchronous report generation request.
+      required:
+      - dateFrom
+      - dateTo
+      properties:
+        dateFrom:
+          type: string
+          format: date
+          example: '2026-04-01'
+        dateTo:
+          type: string
+          format: date
+          example: '2026-04-30'
+        type:
+          type: string
+          enum:
+          - TRANSACTIONS
+          - BALANCE
+          - COMMISSION
+          example: TRANSACTIONS
+    Report:
+      type: object
+      description: Asynchronous report job.
+      properties:
+        reportId:
+          type: string
+          example: report-abc123
+        status:
+          type: string
+          enum:
+          - PENDING
+          - IN_PROGRESS
+          - READY
+          - FAILED
+          example: READY
+        downloadUrl:
+          type: string
+          format: uri
+          example: https://api.zendit.io/v1/reports/report-abc123/download
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-05-01T12:00:00Z'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: Bearer token authentication using your Zendit API key.

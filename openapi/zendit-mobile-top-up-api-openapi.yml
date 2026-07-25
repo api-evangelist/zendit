@@ -1,0 +1,463 @@
+openapi: 3.0.3
+info:
+  title: Zendit Account Mobile Top-Up API
+  description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
+  version: 1.0.0
+  x-generated-from: documentation
+  x-source-url: https://developers.zendit.io/api/
+  contact:
+    name: Zendit
+    url: https://zendit.io
+servers:
+- url: https://api.zendit.io/v1
+  description: Zendit Production
+tags:
+- name: Mobile Top-Up
+  description: Mobile credit top-ups, bundles, and data plans
+paths:
+  /topups/offers:
+    get:
+      operationId: listTopupOffers
+      summary: Zendit List Topup Offers
+      description: List top-up, bundle, and data offers with filters.
+      tags:
+      - Mobile Top-Up
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Country'
+      - name: brand
+        in: query
+        schema:
+          type: string
+        example: example-value
+      - name: subType
+        in: query
+        schema:
+          type: string
+          enum:
+          - Mobile Top Up
+          - Bundle
+          - Data
+        example: Mobile Top Up
+      responses:
+        '200':
+          description: List of offers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OfferList'
+              examples:
+                ListTopupOffers200Example:
+                  summary: Default listTopupOffers 200 response
+                  x-microcks-default: true
+                  value:
+                    list:
+                    - {}
+                    offset: 0
+                    limit: 100
+                    total: 1500
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /topups/offers/{offerId}:
+    get:
+      operationId: getTopupOffer
+      summary: Zendit Get Topup Offer
+      description: Retrieve specific top-up offer details.
+      tags:
+      - Mobile Top-Up
+      parameters:
+      - $ref: '#/components/parameters/OfferId'
+      responses:
+        '200':
+          description: Offer detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Offer'
+              examples:
+                GetTopupOffer200Example:
+                  summary: Default getTopupOffer 200 response
+                  x-microcks-default: true
+                  value:
+                    offerId: offer-12345
+                    name: Rebel Prepaid 10 USD
+                    brand: rebel-prepaid
+                    country: US
+                    type: TOPUP
+                    subType: Mobile Top Up
+                    price:
+                      amount: {}
+                      currency: {}
+                    send:
+                      amount: {}
+                      currency: {}
+                    receive:
+                      amount: {}
+                      currency: {}
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /topups/purchases:
+    get:
+      operationId: listTopupPurchases
+      summary: Zendit List Topup Purchases
+      description: Query top-up transactions with date and status filters.
+      tags:
+      - Mobile Top-Up
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Status'
+      responses:
+        '200':
+          description: List of purchases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseList'
+              examples:
+                ListTopupPurchases200Example:
+                  summary: Default listTopupPurchases 200 response
+                  x-microcks-default: true
+                  value:
+                    list:
+                    - {}
+                    offset: 0
+                    limit: 100
+                    total: 50
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createTopupPurchase
+      summary: Zendit Create Topup Purchase
+      description: Create new top-up transaction.
+      tags:
+      - Mobile Top-Up
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TopupPurchaseRequest'
+            examples:
+              CreateTopupPurchaseRequestExample:
+                summary: Default createTopupPurchase request
+                x-microcks-default: true
+                value:
+                  transactionId: my-txn-abc123
+                  offerId: offer-12345
+                  subscriberNumber: '+15555550100'
+                  sendValue:
+                    amount: {}
+                    currency: {}
+      responses:
+        '201':
+          description: Purchase created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchase'
+              examples:
+                CreateTopupPurchase201Example:
+                  summary: Default createTopupPurchase 201 response
+                  x-microcks-default: true
+                  value:
+                    transactionId: txn-abc123
+                    offerId: offer-12345
+                    status: DONE
+                    type: TOPUP
+                    createdAt: '2026-05-01T12:00:00Z'
+                    send:
+                      amount: {}
+                      currency: {}
+                    receive:
+                      amount: {}
+                      currency: {}
+                    details: {}
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                CreateTopupPurchase400Example:
+                  summary: Default createTopupPurchase 400 response
+                  x-microcks-default: true
+                  value:
+                    code: INVALID_REQUEST
+                    description: The request is missing required parameter offerId.
+                    message: offerId is required.
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /topups/purchases/{transactionId}:
+    get:
+      operationId: getTopupPurchase
+      summary: Zendit Get Topup Purchase
+      description: Fetch top-up transaction status.
+      tags:
+      - Mobile Top-Up
+      parameters:
+      - $ref: '#/components/parameters/TransactionId'
+      responses:
+        '200':
+          description: Purchase detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchase'
+              examples:
+                GetTopupPurchase200Example:
+                  summary: Default getTopupPurchase 200 response
+                  x-microcks-default: true
+                  value:
+                    transactionId: txn-abc123
+                    offerId: offer-12345
+                    status: DONE
+                    type: TOPUP
+                    createdAt: '2026-05-01T12:00:00Z'
+                    send:
+                      amount: {}
+                      currency: {}
+                    receive:
+                      amount: {}
+                      currency: {}
+                    details: {}
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    TopupPurchaseRequest:
+      type: object
+      description: Top-up purchase request.
+      required:
+      - offerId
+      - subscriberNumber
+      properties:
+        transactionId:
+          type: string
+          description: Client-provided idempotency key.
+          example: my-txn-abc123
+        offerId:
+          type: string
+          description: Offer to purchase.
+          example: offer-12345
+        subscriberNumber:
+          type: string
+          description: Recipient phone number in E.164 format.
+          example: '+15555550100'
+        sendValue:
+          $ref: '#/components/schemas/Price'
+    Offer:
+      type: object
+      description: Product offer (top-up, eSIM, voucher).
+      properties:
+        offerId:
+          type: string
+          description: Unique offer identifier.
+          example: offer-12345
+        name:
+          type: string
+          description: Offer display name.
+          example: Rebel Prepaid 10 USD
+        brand:
+          type: string
+          description: Brand identifier.
+          example: rebel-prepaid
+        country:
+          type: string
+          description: Country code.
+          example: US
+        type:
+          type: string
+          description: Offer type.
+          example: TOPUP
+        subType:
+          type: string
+          description: Offer sub-type.
+          example: Mobile Top Up
+        price:
+          $ref: '#/components/schemas/Price'
+        send:
+          $ref: '#/components/schemas/Price'
+        receive:
+          $ref: '#/components/schemas/Price'
+    Error:
+      type: object
+      description: Error response.
+      properties:
+        code:
+          type: string
+          example: INVALID_REQUEST
+        description:
+          type: string
+          example: The request is missing required parameter offerId.
+        message:
+          type: string
+          example: offerId is required.
+    Purchase:
+      type: object
+      description: Purchase transaction.
+      properties:
+        transactionId:
+          type: string
+          example: txn-abc123
+        offerId:
+          type: string
+          example: offer-12345
+        status:
+          type: string
+          enum:
+          - DONE
+          - FAILED
+          - PENDING
+          - ACCEPTED
+          - AUTHORIZED
+          - IN_PROGRESS
+          example: DONE
+        type:
+          type: string
+          example: TOPUP
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-05-01T12:00:00Z'
+        send:
+          $ref: '#/components/schemas/Price'
+        receive:
+          $ref: '#/components/schemas/Price'
+        details:
+          type: object
+          additionalProperties: true
+          description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
+          example: {}
+    PurchaseList:
+      type: object
+      description: Paginated purchase list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 50
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
+    OfferList:
+      type: object
+      description: Paginated offer list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 1500
+  parameters:
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
+    OfferId:
+      name: offerId
+      in: path
+      required: true
+      description: Offer identifier.
+      schema:
+        type: string
+      example: offer-12345
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
+    Status:
+      name: status
+      in: query
+      description: Transaction status filter.
+      schema:
+        type: string
+        enum:
+        - DONE
+        - FAILED
+        - PENDING
+        - ACCEPTED
+        - AUTHORIZED
+        - IN_PROGRESS
+      example: DONE
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: Bearer token authentication using your Zendit API key.

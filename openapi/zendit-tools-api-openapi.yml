@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: Zendit Account Tools API
+  description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
+  version: 1.0.0
+  x-generated-from: documentation
+  x-source-url: https://developers.zendit.io/api/
+  contact:
+    name: Zendit
+    url: https://zendit.io
+servers:
+- url: https://api.zendit.io/v1
+  description: Zendit Production
+tags:
+- name: Tools
+  description: Utility endpoints
+paths:
+  /tools/phonenumberlookup/{msisdn}:
+    get:
+      operationId: lookupPhoneNumber
+      summary: Zendit Lookup Phone Number
+      description: Identify carrier from phone number in E.164 format. BETA endpoint.
+      tags:
+      - Tools
+      parameters:
+      - name: msisdn
+        in: path
+        required: true
+        schema:
+          type: string
+        example: '+15555550100'
+      responses:
+        '200':
+          description: Lookup result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PhoneLookup'
+              examples:
+                LookupPhoneNumber200Example:
+                  summary: Default lookupPhoneNumber 200 response
+                  x-microcks-default: true
+                  value:
+                    msisdn: '+15555550100'
+                    country: US
+                    carrier: Example Mobile
+                    brand: rebel-prepaid
+                    type: MOBILE
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PhoneLookup:
+      type: object
+      description: Phone number carrier lookup result.
+      properties:
+        msisdn:
+          type: string
+          example: '+15555550100'
+        country:
+          type: string
+          example: US
+        carrier:
+          type: string
+          example: Example Mobile
+        brand:
+          type: string
+          example: rebel-prepaid
+        type:
+          type: string
+          example: MOBILE
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: Bearer token authentication using your Zendit API key.

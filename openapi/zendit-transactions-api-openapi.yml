@@ -1,0 +1,187 @@
+openapi: 3.0.3
+info:
+  title: Zendit Account Transactions API
+  description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
+  version: 1.0.0
+  x-generated-from: documentation
+  x-source-url: https://developers.zendit.io/api/
+  contact:
+    name: Zendit
+    url: https://zendit.io
+servers:
+- url: https://api.zendit.io/v1
+  description: Zendit Production
+tags:
+- name: Transactions
+  description: Cross-product transaction queries
+paths:
+  /transactions:
+    get:
+      operationId: listTransactions
+      summary: Zendit List Transactions
+      description: List all transactions across product types.
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Status'
+      responses:
+        '200':
+          description: List of transactions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionList'
+              examples:
+                ListTransactions200Example:
+                  summary: Default listTransactions 200 response
+                  x-microcks-default: true
+                  value:
+                    list:
+                    - {}
+                    offset: 100
+                    limit: 100
+                    total: 100
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /transactions/{transactionId}:
+    get:
+      operationId: getTransaction
+      summary: Zendit Get Transaction
+      description: Get transaction with full history log.
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/TransactionId'
+      responses:
+        '200':
+          description: Transaction detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+              examples:
+                GetTransaction200Example:
+                  summary: Default getTransaction 200 response
+                  x-microcks-default: true
+                  value:
+                    transactionId: txn-abc123
+                    type: TOPUP
+                    status: DONE
+                    createdAt: '2026-05-01T12:00:00Z'
+                    history:
+                    - status: PENDING
+                      timestamp: '2026-05-01T12:00:00Z'
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    TransactionList:
+      type: object
+      description: Paginated transaction list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 100
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 100
+    Transaction:
+      type: object
+      description: Transaction with history log.
+      properties:
+        transactionId:
+          type: string
+          example: txn-abc123
+        type:
+          type: string
+          example: TOPUP
+        status:
+          type: string
+          example: DONE
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-05-01T12:00:00Z'
+        history:
+          type: array
+          description: Transaction status history.
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                example: PENDING
+              timestamp:
+                type: string
+                format: date-time
+                example: '2026-05-01T12:00:00Z'
+          example:
+          - status: PENDING
+            timestamp: '2026-05-01T12:00:00Z'
+  parameters:
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    Status:
+      name: status
+      in: query
+      description: Transaction status filter.
+      schema:
+        type: string
+        enum:
+        - DONE
+        - FAILED
+        - PENDING
+        - ACCEPTED
+        - AUTHORIZED
+        - IN_PROGRESS
+      example: DONE
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: Bearer token authentication using your Zendit API key.

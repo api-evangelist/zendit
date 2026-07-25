@@ -1,0 +1,222 @@
+openapi: 3.0.3
+info:
+  title: Zendit Account Brands API
+  description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
+  version: 1.0.0
+  x-generated-from: documentation
+  x-source-url: https://developers.zendit.io/api/
+  contact:
+    name: Zendit
+    url: https://zendit.io
+servers:
+- url: https://api.zendit.io/v1
+  description: Zendit Production
+tags:
+- name: Brands
+  description: Brand catalog
+paths:
+  /brands:
+    get:
+      operationId: listBrands
+      summary: Zendit List Brands
+      description: List available brands with pagination and optional country filtering.
+      tags:
+      - Brands
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Offset'
+      - $ref: '#/components/parameters/Country'
+      responses:
+        '200':
+          description: List of brands
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrandList'
+              examples:
+                ListBrands200Example:
+                  summary: Default listBrands 200 response
+                  x-microcks-default: true
+                  value:
+                    list:
+                    - {}
+                    offset: 0
+                    limit: 100
+                    total: 250
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /brands/{brand}:
+    get:
+      operationId: getBrand
+      summary: Zendit Get Brand
+      description: Get brand details, logos, and metadata.
+      tags:
+      - Brands
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        schema:
+          type: string
+        example: rebel-prepaid
+      responses:
+        '200':
+          description: Brand detail
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brand'
+              examples:
+                GetBrand200Example:
+                  summary: Default getBrand 200 response
+                  x-microcks-default: true
+                  value:
+                    id: rebel-prepaid
+                    name: Rebel Prepaid
+                    country: US
+                    logoUrl: https://cdn.zendit.io/logos/rebel.png
+                    types:
+                    - Mobile Top Up
+                    - Bundle
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /brands/{brand}/redemptionInstructions:
+    get:
+      operationId: getBrandRedemptionInstructions
+      summary: Zendit Get Brand Redemption Instructions
+      description: Fetch redemption terms and conditions by delivery type.
+      tags:
+      - Brands
+      parameters:
+      - name: brand
+        in: path
+        required: true
+        schema:
+          type: string
+        example: example-value
+      responses:
+        '200':
+          description: Redemption instructions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedemptionInstructions'
+              examples:
+                GetBrandRedemptionInstructions200Example:
+                  summary: Default getBrandRedemptionInstructions 200 response
+                  x-microcks-default: true
+                  value:
+                    deliveryType: SMS
+                    instructions: Dial *123# from your phone to redeem.
+                    termsAndConditions: Valid for 30 days from purchase.
+      security:
+      - BearerAuth: []
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    RedemptionInstructions:
+      type: object
+      description: Brand redemption terms by delivery type.
+      properties:
+        deliveryType:
+          type: string
+          example: SMS
+        instructions:
+          type: string
+          example: Dial *123# from your phone to redeem.
+        termsAndConditions:
+          type: string
+          example: Valid for 30 days from purchase.
+    Brand:
+      type: object
+      description: Brand catalog entry.
+      properties:
+        id:
+          type: string
+          description: Brand identifier.
+          example: rebel-prepaid
+        name:
+          type: string
+          description: Brand name.
+          example: Rebel Prepaid
+        country:
+          type: string
+          description: Country code.
+          example: US
+        logoUrl:
+          type: string
+          format: uri
+          description: Brand logo URL.
+          example: https://cdn.zendit.io/logos/rebel.png
+        types:
+          type: array
+          description: Product types offered.
+          items:
+            type: string
+          example:
+          - Mobile Top Up
+          - Bundle
+    BrandList:
+      type: object
+      description: Paginated brand list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 250
+  parameters:
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API Key
+      description: Bearer token authentication using your Zendit API key.
