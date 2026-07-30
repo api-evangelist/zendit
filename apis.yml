@@ -5,9 +5,22 @@ description: >-
   enables businesses to offer mobile top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM
   products through a single integration.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/zendit.png
 tags:
   - eSIM
   - Gift Cards
@@ -19,41 +32,241 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: zendit:zendit-api
-    name: Zendit API
-    description: >-
-      The Zendit API provides programmatic access to the global prepaid ecosystem, enabling developers to offer mobile
-      credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products. The platform
-      supports self-onboarding, sandbox testing, and webhook notifications.
-    humanURL: https://zendit.io/
-    baseURL: https://api.zendit.io/v1
-    tags:
-      - eSIM
-      - Gift Cards
-      - Mobile Top-Up
-      - Prepaid
-    properties:
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/openapi/zendit-api.yml
-      - type: Documentation
-        url: https://zendit.io/
-      - type: APIReference
-        url: https://developers.zendit.io/api/
-      - type: GettingStarted
-        url: https://zendit.io/user-guide/getting-started/
-      - type: Authentication
-        url: https://developers.zendit.io/api/
-      - type: Guide
-        url: https://zendit.io/guide-to-integrating-zendits-api-into-your-projects/
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/
-      - type: JSONStructure
-        url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
-      - type: JSONLD
-        url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
-      - type: Examples
-        url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
+- aid: zendit:zendit-account-api
+  name: Zendit Account API
+  description: Wallet balance and account information
+  humanURL: https://zendit.io/
+  baseURL: https://api.zendit.io/v1
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/zendit-account-api-openapi.yml
+  - type: Documentation
+    url: https://zendit.io/
+  - type: APIReference
+    url: https://developers.zendit.io/api/
+  - type: GettingStarted
+    url: https://zendit.io/user-guide/getting-started/
+  - type: Authentication
+    url: https://developers.zendit.io/api/
+  - type: Guide
+    url: https://zendit.io/guide-to-integrating-zendits-api-into-your-projects/
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
+- aid: zendit:zendit-brands-api
+  name: Zendit Brands API
+  description: Brand catalog
+  humanURL: https://zendit.io/
+  baseURL: https://api.zendit.io/v1
+  tags:
+  - Brands
+  properties:
+  - type: OpenAPI
+    url: openapi/zendit-brands-api-openapi.yml
+  - type: Documentation
+    url: https://zendit.io/
+  - type: APIReference
+    url: https://developers.zendit.io/api/
+  - type: GettingStarted
+    url: https://zendit.io/user-guide/getting-started/
+  - type: Authentication
+    url: https://developers.zendit.io/api/
+  - type: Guide
+    url: https://zendit.io/guide-to-integrating-zendits-api-into-your-projects/
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
+- aid: zendit:zendit-esim-api
+  name: Zendit eSIM API
+  description: eSIM plans and activation
+  humanURL: https://zendit.io/
+  baseURL: https://api.zendit.io/v1
+  tags:
+  - eSIM
+  properties:
+  - type: OpenAPI
+    url: openapi/zendit-esim-api-openapi.yml
+  - type: Documentation
+    url: https://zendit.io/
+  - type: APIReference
+    url: https://developers.zendit.io/api/
+  - type: GettingStarted
+    url: https://zendit.io/user-guide/getting-started/
+  - type: Authentication
+    url: https://developers.zendit.io/api/
+  - type: Guide
+    url: https://zendit.io/guide-to-integrating-zendits-api-into-your-projects/
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
+- aid: zendit:zendit-mobile-top-up-api
+  name: Zendit Mobile Top-Up API
+  description: Mobile credit top-ups, bundles, and data plans
+  humanURL: https://zendit.io/
+  baseURL: https://api.zendit.io/v1
+  tags:
+  - Mobile Top-Up
+  properties:
+  - type: OpenAPI
+    url: openapi/zendit-mobile-top-up-api-openapi.yml
+  - type: Documentation
+    url: https://zendit.io/
+  - type: APIReference
+    url: https://developers.zendit.io/api/
+  - type: GettingStarted
+    url: https://zendit.io/user-guide/getting-started/
+  - type: Authentication
+    url: https://developers.zendit.io/api/
+  - type: Guide
+    url: https://zendit.io/guide-to-integrating-zendits-api-into-your-projects/
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
+- aid: zendit:zendit-reports-api
+  name: Zendit Reports API
+  description: Transaction reporting
+  humanURL: https://zendit.io/
+  baseURL: https://api.zendit.io/v1
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/zendit-reports-api-openapi.yml
+  - type: Documentation
+    url: https://zendit.io/
+  - type: APIReference
+    url: https://developers.zendit.io/api/
+  - type: GettingStarted
+    url: https://zendit.io/user-guide/getting-started/
+  - type: Authentication
+    url: https://developers.zendit.io/api/
+  - type: Guide
+    url: https://zendit.io/guide-to-integrating-zendits-api-into-your-projects/
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
+- aid: zendit:zendit-tools-api
+  name: Zendit Tools API
+  description: Utility endpoints
+  humanURL: https://zendit.io/
+  baseURL: https://api.zendit.io/v1
+  tags:
+  - Tools
+  properties:
+  - type: OpenAPI
+    url: openapi/zendit-tools-api-openapi.yml
+  - type: Documentation
+    url: https://zendit.io/
+  - type: APIReference
+    url: https://developers.zendit.io/api/
+  - type: GettingStarted
+    url: https://zendit.io/user-guide/getting-started/
+  - type: Authentication
+    url: https://developers.zendit.io/api/
+  - type: Guide
+    url: https://zendit.io/guide-to-integrating-zendits-api-into-your-projects/
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
+- aid: zendit:zendit-transactions-api
+  name: Zendit Transactions API
+  description: Cross-product transaction queries
+  humanURL: https://zendit.io/
+  baseURL: https://api.zendit.io/v1
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/zendit-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://zendit.io/
+  - type: APIReference
+    url: https://developers.zendit.io/api/
+  - type: GettingStarted
+    url: https://zendit.io/user-guide/getting-started/
+  - type: Authentication
+    url: https://developers.zendit.io/api/
+  - type: Guide
+    url: https://zendit.io/guide-to-integrating-zendits-api-into-your-projects/
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
+- aid: zendit:zendit-vouchers-api
+  name: Zendit Vouchers API
+  description: Digital gift cards and utility bill payments
+  humanURL: https://zendit.io/
+  baseURL: https://api.zendit.io/v1
+  tags:
+  - Vouchers
+  properties:
+  - type: OpenAPI
+    url: openapi/zendit-vouchers-api-openapi.yml
+  - type: Documentation
+    url: https://zendit.io/
+  - type: APIReference
+    url: https://developers.zendit.io/api/
+  - type: GettingStarted
+    url: https://zendit.io/user-guide/getting-started/
+  - type: Authentication
+    url: https://developers.zendit.io/api/
+  - type: Guide
+    url: https://zendit.io/guide-to-integrating-zendits-api-into-your-projects/
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-schema/
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-structure/
+  - type: JSONLD
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/json-ld/zendit-api-context.jsonld
+  - type: Examples
+    url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/zendit/overview
   - type: AgenticAccess
     url: agentic-access/zendit-agentic-access.yml
   - type: DomainSecurity
