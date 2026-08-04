@@ -1,0 +1,606 @@
+{
+  "info": {
+    "_postman_id": "121583af-8391-493a-b6a0-56c25816718b",
+    "name": "Zendit Account Vouchers API",
+    "description": "The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.\n\nContact Support:\n Name: Zendit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:37:31.000Z",
+    "updatedAt": "2026-07-28T03:37:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-121583af-8391-493a-b6a0-56c25816718b"
+  },
+  "item": [
+    {
+      "name": "vouchers",
+      "item": [
+        {
+          "name": "offers",
+          "item": [
+            {
+              "name": "{offerId}",
+              "item": [
+                {
+                  "name": "Zendit Get Voucher Offer",
+                  "id": "f61d8fea-de93-44b4-a989-8d143beac526",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vouchers/offers/:offerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vouchers",
+                        "offers",
+                        ":offerId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "62df8444-de5e-4ba9-a3ec-1cc58b133fc7",
+                          "key": "offerId",
+                          "value": "<string>",
+                          "description": "(Required) Offer identifier."
+                        }
+                      ]
+                    },
+                    "description": "Get voucher offer details with required fields."
+                  },
+                  "response": [
+                    {
+                      "id": "64e64f0b-4362-4eb0-9cb7-60480a35c494",
+                      "name": "Voucher offer detail",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/vouchers/offers/:offerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vouchers",
+                            "offers",
+                            ":offerId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "offerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"offerId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"country\": \"<string>\",\n  \"type\": \"<string>\",\n  \"subType\": \"<string>\",\n  \"price\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"send\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"receive\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:37:32.000Z",
+                      "updatedAt": "2026-07-28T03:37:32.000Z",
+                      "uid": "35240-64e64f0b-4362-4eb0-9cb7-60480a35c494"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:37:32.000Z",
+                  "updatedAt": "2026-07-28T03:37:32.000Z",
+                  "uid": "35240-f61d8fea-de93-44b4-a989-8d143beac526"
+                }
+              ],
+              "id": "c8d6a41c-aef4-424a-ad13-f9b6a5645fc7",
+              "createdAt": "2026-07-28T03:37:32.000Z",
+              "updatedAt": "2026-07-28T03:37:32.000Z",
+              "uid": "35240-c8d6a41c-aef4-424a-ad13-f9b6a5645fc7"
+            },
+            {
+              "name": "Zendit List Voucher Offers",
+              "id": "9b274411-83e6-4c5f-b063-7fe334b089ae",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vouchers/offers?_limit=100&_offset=0&country=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vouchers",
+                    "offers"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Items per page (1-1024).",
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "(Required) Pagination offset.",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Two-letter ISO country code.",
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "List gift card and utility offers."
+              },
+              "response": [
+                {
+                  "id": "839b2997-981f-47be-8722-5b21b6bb2c84",
+                  "name": "List of voucher offers",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vouchers/offers?_limit=100&_offset=0&country=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vouchers",
+                        "offers"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Items per page (1-1024).",
+                          "key": "_limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "(Required) Pagination offset.",
+                          "key": "_offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Two-letter ISO country code.",
+                          "key": "country",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"list\": [\n    {\n      \"offerId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"country\": \"<string>\",\n      \"type\": \"<string>\",\n      \"subType\": \"<string>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"send\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"receive\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      }\n    },\n    {\n      \"offerId\": \"<string>\",\n      \"name\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"country\": \"<string>\",\n      \"type\": \"<string>\",\n      \"subType\": \"<string>\",\n      \"price\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"send\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"receive\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      }\n    }\n  ],\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"total\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:37:32.000Z",
+                  "updatedAt": "2026-07-28T03:37:32.000Z",
+                  "uid": "35240-839b2997-981f-47be-8722-5b21b6bb2c84"
+                }
+              ],
+              "createdAt": "2026-07-28T03:37:32.000Z",
+              "updatedAt": "2026-07-28T03:37:32.000Z",
+              "uid": "35240-9b274411-83e6-4c5f-b063-7fe334b089ae"
+            }
+          ],
+          "id": "5638676e-73d0-4661-8e4b-1b1cabd16d15",
+          "createdAt": "2026-07-28T03:37:32.000Z",
+          "updatedAt": "2026-07-28T03:37:32.000Z",
+          "uid": "35240-5638676e-73d0-4661-8e4b-1b1cabd16d15"
+        },
+        {
+          "name": "purchases",
+          "item": [
+            {
+              "name": "{transactionId}",
+              "item": [
+                {
+                  "name": "Zendit Get Voucher Purchase",
+                  "id": "0f2f7e10-4ef4-47e1-9901-6dca301009d6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vouchers/purchases/:transactionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vouchers",
+                        "purchases",
+                        ":transactionId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c9a0fdaf-d432-4e6a-86dd-1d8573bc6ca6",
+                          "key": "transactionId",
+                          "value": "<string>",
+                          "description": "(Required) Transaction identifier."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve voucher transaction with receipt data."
+                  },
+                  "response": [
+                    {
+                      "id": "0f74789c-40eb-401f-8ed9-29c7c642e412",
+                      "name": "Voucher purchase detail",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/vouchers/purchases/:transactionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "vouchers",
+                            "purchases",
+                            ":transactionId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "transactionId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"transactionId\": \"<string>\",\n  \"offerId\": \"<string>\",\n  \"status\": \"DONE\",\n  \"type\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"send\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"receive\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"details\": {\n    \"euf85\": false,\n    \"ad_83d\": -95808897.76852594\n  }\n}",
+                      "createdAt": "2026-07-28T03:37:32.000Z",
+                      "updatedAt": "2026-07-28T03:37:32.000Z",
+                      "uid": "35240-0f74789c-40eb-401f-8ed9-29c7c642e412"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:37:32.000Z",
+                  "updatedAt": "2026-07-28T03:37:32.000Z",
+                  "uid": "35240-0f2f7e10-4ef4-47e1-9901-6dca301009d6"
+                }
+              ],
+              "id": "390fbc49-6b4b-4a48-b121-e89fe53bc5e6",
+              "createdAt": "2026-07-28T03:37:32.000Z",
+              "updatedAt": "2026-07-28T03:37:32.000Z",
+              "uid": "35240-390fbc49-6b4b-4a48-b121-e89fe53bc5e6"
+            },
+            {
+              "name": "Zendit List Voucher Purchases",
+              "id": "fa6325a6-8455-44df-ae55-28bc6a1dcc44",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/vouchers/purchases?_limit=100&_offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vouchers",
+                    "purchases"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Items per page (1-1024).",
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "(Required) Pagination offset.",
+                      "key": "_offset",
+                      "value": "0"
+                    }
+                  ]
+                },
+                "description": "Query voucher transactions."
+              },
+              "response": [
+                {
+                  "id": "92cc65fb-f8e1-4948-a3a8-6a92f5805bd5",
+                  "name": "List of voucher purchases",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/vouchers/purchases?_limit=100&_offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vouchers",
+                        "purchases"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Items per page (1-1024).",
+                          "key": "_limit",
+                          "value": "100"
+                        },
+                        {
+                          "description": "(Required) Pagination offset.",
+                          "key": "_offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"list\": [\n    {\n      \"transactionId\": \"<string>\",\n      \"offerId\": \"<string>\",\n      \"status\": \"PENDING\",\n      \"type\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"send\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"receive\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"details\": {\n        \"irure78\": 32634265,\n        \"qui_7\": true,\n        \"nisic\": false\n      }\n    },\n    {\n      \"transactionId\": \"<string>\",\n      \"offerId\": \"<string>\",\n      \"status\": \"DONE\",\n      \"type\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"send\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"receive\": {\n        \"amount\": \"<number>\",\n        \"currency\": \"<string>\"\n      },\n      \"details\": {\n        \"nulla_29\": \"nulla pariatur dolor laborum\",\n        \"laboris_8\": \"id\",\n        \"aliquip_e\": -41212712.433872856\n      }\n    }\n  ],\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"total\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:37:32.000Z",
+                  "updatedAt": "2026-07-28T03:37:32.000Z",
+                  "uid": "35240-92cc65fb-f8e1-4948-a3a8-6a92f5805bd5"
+                }
+              ],
+              "createdAt": "2026-07-28T03:37:32.000Z",
+              "updatedAt": "2026-07-28T03:37:32.000Z",
+              "uid": "35240-fa6325a6-8455-44df-ae55-28bc6a1dcc44"
+            },
+            {
+              "name": "Zendit Create Voucher Purchase",
+              "id": "5f9592b6-01d4-43a0-b1fb-ba3b7ed46ce0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"offerId\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"sendValue\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"recipient\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/vouchers/purchases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "vouchers",
+                    "purchases"
+                  ]
+                },
+                "description": "Create gift card or utility payment transaction."
+              },
+              "response": [
+                {
+                  "id": "8190b39f-94c8-4d65-9810-c4cf08a260f8",
+                  "name": "Voucher purchase created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"offerId\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"sendValue\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"recipient\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/vouchers/purchases",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "vouchers",
+                        "purchases"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"transactionId\": \"<string>\",\n  \"offerId\": \"<string>\",\n  \"status\": \"DONE\",\n  \"type\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"send\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"receive\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"details\": {\n    \"euf85\": false,\n    \"ad_83d\": -95808897.76852594\n  }\n}",
+                  "createdAt": "2026-07-28T03:37:32.000Z",
+                  "updatedAt": "2026-07-28T03:37:32.000Z",
+                  "uid": "35240-8190b39f-94c8-4d65-9810-c4cf08a260f8"
+                }
+              ],
+              "createdAt": "2026-07-28T03:37:32.000Z",
+              "updatedAt": "2026-07-28T03:37:32.000Z",
+              "uid": "35240-5f9592b6-01d4-43a0-b1fb-ba3b7ed46ce0"
+            }
+          ],
+          "id": "5a4f295a-c7b8-4369-b0fe-c7771bcc7b2d",
+          "createdAt": "2026-07-28T03:37:32.000Z",
+          "updatedAt": "2026-07-28T03:37:32.000Z",
+          "uid": "35240-5a4f295a-c7b8-4369-b0fe-c7771bcc7b2d"
+        }
+      ],
+      "id": "d96314b0-1404-4c62-9a2c-4f57952b62fd",
+      "createdAt": "2026-07-28T03:37:32.000Z",
+      "updatedAt": "2026-07-28T03:37:32.000Z",
+      "uid": "35240-d96314b0-1404-4c62-9a2c-4f57952b62fd"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.zendit.io/v1"
+    }
+  ]
+}

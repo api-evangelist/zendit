@@ -1,0 +1,356 @@
+{
+  "info": {
+    "_postman_id": "8d0ea674-c959-4815-99cf-5cc37c93c8da",
+    "name": "Zendit Account Reports API",
+    "description": "The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.\n\nContact Support:\n Name: Zendit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:37:23.000Z",
+    "updatedAt": "2026-07-28T03:37:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8d0ea674-c959-4815-99cf-5cc37c93c8da"
+  },
+  "item": [
+    {
+      "name": "reports",
+      "item": [
+        {
+          "name": "{reportId}",
+          "item": [
+            {
+              "name": "download",
+              "item": [
+                {
+                  "name": "Zendit Download Report",
+                  "id": "228fad1a-52ae-4210-b7c4-be7c19bf49b3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/csv"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId/download",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId",
+                        "download"
+                      ],
+                      "variable": [
+                        {
+                          "id": "46c16f86-0e9c-46af-8f1d-a01ef12e99fc",
+                          "key": "reportId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Download completed report file (CSV)."
+                  },
+                  "response": [
+                    {
+                      "id": "811f4cd2-b205-4680-865d-34b3f75c42f0",
+                      "name": "CSV report file",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/csv"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/download",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "download"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/csv"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<binary>",
+                      "createdAt": "2026-07-28T03:37:24.000Z",
+                      "updatedAt": "2026-07-28T03:37:24.000Z",
+                      "uid": "35240-811f4cd2-b205-4680-865d-34b3f75c42f0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:37:24.000Z",
+                  "updatedAt": "2026-07-28T03:37:24.000Z",
+                  "uid": "35240-228fad1a-52ae-4210-b7c4-be7c19bf49b3"
+                }
+              ],
+              "id": "f089600e-ba1f-4e1b-8296-66efbe891576",
+              "createdAt": "2026-07-28T03:37:24.000Z",
+              "updatedAt": "2026-07-28T03:37:24.000Z",
+              "uid": "35240-f089600e-ba1f-4e1b-8296-66efbe891576"
+            },
+            {
+              "name": "Zendit Get Report",
+              "id": "aa6566d4-029c-4792-81f2-a9c500847a88",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports/:reportId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "28cf2d96-89ea-443c-aaf8-eba601e8ae9f",
+                      "key": "reportId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Check report generation status."
+              },
+              "response": [
+                {
+                  "id": "5dcb1b96-d023-409e-9b2f-776e97c4e7a2",
+                  "name": "Report detail",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"reportId\": \"<string>\",\n  \"status\": \"IN_PROGRESS\",\n  \"downloadUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T03:37:24.000Z",
+                  "updatedAt": "2026-07-28T03:37:24.000Z",
+                  "uid": "35240-5dcb1b96-d023-409e-9b2f-776e97c4e7a2"
+                }
+              ],
+              "createdAt": "2026-07-28T03:37:24.000Z",
+              "updatedAt": "2026-07-28T03:37:24.000Z",
+              "uid": "35240-aa6566d4-029c-4792-81f2-a9c500847a88"
+            }
+          ],
+          "id": "c46c6118-14d2-4725-88c5-42e4e4977dd7",
+          "createdAt": "2026-07-28T03:37:24.000Z",
+          "updatedAt": "2026-07-28T03:37:24.000Z",
+          "uid": "35240-c46c6118-14d2-4725-88c5-42e4e4977dd7"
+        },
+        {
+          "name": "Zendit Create Report",
+          "id": "c628d48e-e71e-4339-aaa8-6c68b906b5fe",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dateFrom\": \"<date>\",\n  \"dateTo\": \"<date>\",\n  \"type\": \"TRANSACTIONS\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reports",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reports"
+              ]
+            },
+            "description": "Generate transaction report (CSV) asynchronously."
+          },
+          "response": [
+            {
+              "id": "a3c6c364-2fe7-4fde-882c-97b0b1a6d82e",
+              "name": "Report job accepted",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dateFrom\": \"<date>\",\n  \"dateTo\": \"<date>\",\n  \"type\": \"TRANSACTIONS\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"reportId\": \"<string>\",\n  \"status\": \"IN_PROGRESS\",\n  \"downloadUrl\": \"<uri>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T03:37:24.000Z",
+              "updatedAt": "2026-07-28T03:37:24.000Z",
+              "uid": "35240-a3c6c364-2fe7-4fde-882c-97b0b1a6d82e"
+            }
+          ],
+          "createdAt": "2026-07-28T03:37:24.000Z",
+          "updatedAt": "2026-07-28T03:37:24.000Z",
+          "uid": "35240-c628d48e-e71e-4339-aaa8-6c68b906b5fe"
+        }
+      ],
+      "id": "965cbb86-c37b-4f11-a486-29dd2741117b",
+      "createdAt": "2026-07-28T03:37:24.000Z",
+      "updatedAt": "2026-07-28T03:37:24.000Z",
+      "uid": "35240-965cbb86-c37b-4f11-a486-29dd2741117b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.zendit.io/v1"
+    }
+  ]
+}

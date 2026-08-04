@@ -1,0 +1,147 @@
+{
+  "info": {
+    "_postman_id": "3903b34d-88de-44b0-b91f-92fc4936347d",
+    "name": "Zendit Account Tools API",
+    "description": "The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.\n\nContact Support:\n Name: Zendit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:37:24.000Z",
+    "updatedAt": "2026-07-28T03:37:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3903b34d-88de-44b0-b91f-92fc4936347d"
+  },
+  "item": [
+    {
+      "name": "tools",
+      "item": [
+        {
+          "name": "phonenumberlookup",
+          "item": [
+            {
+              "name": "{msisdn}",
+              "item": [
+                {
+                  "name": "Zendit Lookup Phone Number",
+                  "id": "d5b38691-b1e9-4cdf-bde9-f6d8d089d01c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tools/phonenumberlookup/:msisdn",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tools",
+                        "phonenumberlookup",
+                        ":msisdn"
+                      ],
+                      "variable": [
+                        {
+                          "id": "74a49880-b865-4788-89c1-2d9f27337a0f",
+                          "key": "msisdn",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Identify carrier from phone number in E.164 format. BETA endpoint."
+                  },
+                  "response": [
+                    {
+                      "id": "b13e0b25-9986-42f8-b483-a69b88a6db3d",
+                      "name": "Lookup result",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tools/phonenumberlookup/:msisdn",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tools",
+                            "phonenumberlookup",
+                            ":msisdn"
+                          ],
+                          "variable": [
+                            {
+                              "key": "msisdn"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"msisdn\": \"<string>\",\n  \"country\": \"<string>\",\n  \"carrier\": \"<string>\",\n  \"brand\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:37:25.000Z",
+                      "updatedAt": "2026-07-28T03:37:25.000Z",
+                      "uid": "35240-b13e0b25-9986-42f8-b483-a69b88a6db3d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:37:25.000Z",
+                  "updatedAt": "2026-07-28T03:37:25.000Z",
+                  "uid": "35240-d5b38691-b1e9-4cdf-bde9-f6d8d089d01c"
+                }
+              ],
+              "id": "90d2cab3-8ad0-4ae4-8f2f-f4374927a647",
+              "createdAt": "2026-07-28T03:37:25.000Z",
+              "updatedAt": "2026-07-28T03:37:25.000Z",
+              "uid": "35240-90d2cab3-8ad0-4ae4-8f2f-f4374927a647"
+            }
+          ],
+          "id": "07714d0d-f98f-4bbb-a77a-f1d6986dc0c3",
+          "createdAt": "2026-07-28T03:37:25.000Z",
+          "updatedAt": "2026-07-28T03:37:25.000Z",
+          "uid": "35240-07714d0d-f98f-4bbb-a77a-f1d6986dc0c3"
+        }
+      ],
+      "id": "5f4e8223-b0b8-49a7-b4cb-00ded30e8caf",
+      "createdAt": "2026-07-28T03:37:25.000Z",
+      "updatedAt": "2026-07-28T03:37:25.000Z",
+      "uid": "35240-5f4e8223-b0b8-49a7-b4cb-00ded30e8caf"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.zendit.io/v1"
+    }
+  ]
+}

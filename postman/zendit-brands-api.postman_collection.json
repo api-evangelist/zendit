@@ -1,0 +1,362 @@
+{
+  "info": {
+    "_postman_id": "1dcb1916-a91c-45dc-9241-113ba9b285c2",
+    "name": "Zendit Account Brands API",
+    "description": "The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.\n\nContact Support:\n Name: Zendit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:37:10.000Z",
+    "updatedAt": "2026-07-28T03:37:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1dcb1916-a91c-45dc-9241-113ba9b285c2"
+  },
+  "item": [
+    {
+      "name": "brands",
+      "item": [
+        {
+          "name": "{brand}",
+          "item": [
+            {
+              "name": "redemptionInstructions",
+              "item": [
+                {
+                  "name": "Zendit Get Brand Redemption Instructions",
+                  "id": "4c1b8eda-be4c-408e-95bf-0749cca81cb9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "bearer",
+                      "bearer": [
+                        {
+                          "key": "token",
+                          "value": "{{bearerToken}}",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/brands/:brand/redemptionInstructions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "brands",
+                        ":brand",
+                        "redemptionInstructions"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ee50ba35-6f6e-4c6a-808a-f86c22f389ae",
+                          "key": "brand",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Fetch redemption terms and conditions by delivery type."
+                  },
+                  "response": [
+                    {
+                      "id": "4dbcde9d-db54-438c-b5cb-ceb9bc60549a",
+                      "name": "Redemption instructions",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/brands/:brand/redemptionInstructions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "brands",
+                            ":brand",
+                            "redemptionInstructions"
+                          ],
+                          "variable": [
+                            {
+                              "key": "brand"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"deliveryType\": \"<string>\",\n  \"instructions\": \"<string>\",\n  \"termsAndConditions\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:37:11.000Z",
+                      "updatedAt": "2026-07-28T03:37:11.000Z",
+                      "uid": "35240-4dbcde9d-db54-438c-b5cb-ceb9bc60549a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:37:11.000Z",
+                  "updatedAt": "2026-07-28T03:37:11.000Z",
+                  "uid": "35240-4c1b8eda-be4c-408e-95bf-0749cca81cb9"
+                }
+              ],
+              "id": "a0730de7-8fe8-47d5-8377-2718595d2040",
+              "createdAt": "2026-07-28T03:37:11.000Z",
+              "updatedAt": "2026-07-28T03:37:11.000Z",
+              "uid": "35240-a0730de7-8fe8-47d5-8377-2718595d2040"
+            },
+            {
+              "name": "Zendit Get Brand",
+              "id": "d69d5874-085a-4bdf-8d44-4e9c4e6eacb9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/brands/:brand",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "brands",
+                    ":brand"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8b36e87e-9b5b-4953-b5eb-a75ac43fd35b",
+                      "key": "brand",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Get brand details, logos, and metadata."
+              },
+              "response": [
+                {
+                  "id": "7bd45b0b-02e3-43d0-a263-f7e206e5ff11",
+                  "name": "Brand detail",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/brands/:brand",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "brands",
+                        ":brand"
+                      ],
+                      "variable": [
+                        {
+                          "key": "brand"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"country\": \"<string>\",\n  \"logoUrl\": \"<uri>\",\n  \"types\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "createdAt": "2026-07-28T03:37:11.000Z",
+                  "updatedAt": "2026-07-28T03:37:11.000Z",
+                  "uid": "35240-7bd45b0b-02e3-43d0-a263-f7e206e5ff11"
+                }
+              ],
+              "createdAt": "2026-07-28T03:37:11.000Z",
+              "updatedAt": "2026-07-28T03:37:11.000Z",
+              "uid": "35240-d69d5874-085a-4bdf-8d44-4e9c4e6eacb9"
+            }
+          ],
+          "id": "9696a284-eb8b-43b5-a34b-c4a49d0045cf",
+          "createdAt": "2026-07-28T03:37:11.000Z",
+          "updatedAt": "2026-07-28T03:37:11.000Z",
+          "uid": "35240-9696a284-eb8b-43b5-a34b-c4a49d0045cf"
+        },
+        {
+          "name": "Zendit List Brands",
+          "id": "df147234-08f2-45e8-af49-6e4575e27a1a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/brands?_limit=100&_offset=0&country=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "brands"
+              ],
+              "query": [
+                {
+                  "description": "(Required) Items per page (1-1024).",
+                  "key": "_limit",
+                  "value": "100"
+                },
+                {
+                  "description": "(Required) Pagination offset.",
+                  "key": "_offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Two-letter ISO country code.",
+                  "key": "country",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "List available brands with pagination and optional country filtering."
+          },
+          "response": [
+            {
+              "id": "7ba45ee0-e4fb-45d6-88ac-d25b392e3254",
+              "name": "List of brands",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/brands?_limit=100&_offset=0&country=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "brands"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Items per page (1-1024).",
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "(Required) Pagination offset.",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Two-letter ISO country code.",
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"list\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"logoUrl\": \"<uri>\",\n      \"types\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"country\": \"<string>\",\n      \"logoUrl\": \"<uri>\",\n      \"types\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:11.000Z",
+              "updatedAt": "2026-07-28T03:37:11.000Z",
+              "uid": "35240-7ba45ee0-e4fb-45d6-88ac-d25b392e3254"
+            }
+          ],
+          "createdAt": "2026-07-28T03:37:11.000Z",
+          "updatedAt": "2026-07-28T03:37:11.000Z",
+          "uid": "35240-df147234-08f2-45e8-af49-6e4575e27a1a"
+        }
+      ],
+      "id": "5ca0545a-d300-41c1-9a70-6055f7df3ef5",
+      "createdAt": "2026-07-28T03:37:11.000Z",
+      "updatedAt": "2026-07-28T03:37:11.000Z",
+      "uid": "35240-5ca0545a-d300-41c1-9a70-6055f7df3ef5"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.zendit.io/v1"
+    }
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "info": {
+    "_postman_id": "827e4be0-777c-4b33-ab1d-6c4c4991f764",
+    "name": "Zendit Account Transactions API",
+    "description": "The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.\n\nContact Support:\n Name: Zendit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:37:25.000Z",
+    "updatedAt": "2026-07-28T03:37:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-827e4be0-777c-4b33-ab1d-6c4c4991f764"
+  },
+  "item": [
+    {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "{transactionId}",
+          "item": [
+            {
+              "name": "Zendit Get Transaction",
+              "id": "1611d4e3-6f91-4086-bcc8-6f7b51e697b6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{bearerToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions/:transactionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "13bbe914-6176-479c-bd00-e5ee2d492c9c",
+                      "key": "transactionId",
+                      "value": "<string>",
+                      "description": "(Required) Transaction identifier."
+                    }
+                  ]
+                },
+                "description": "Get transaction with full history log."
+              },
+              "response": [
+                {
+                  "id": "10a64a7a-f3c0-48d7-864c-a9a9b6fd3d77",
+                  "name": "Transaction detail",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/transactions/:transactionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "transactions",
+                        ":transactionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"transactionId\": \"<string>\",\n  \"type\": \"<string>\",\n  \"status\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"history\": [\n    {\n      \"status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\"\n    },\n    {\n      \"status\": \"<string>\",\n      \"timestamp\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:37:26.000Z",
+                  "updatedAt": "2026-07-28T03:37:26.000Z",
+                  "uid": "35240-10a64a7a-f3c0-48d7-864c-a9a9b6fd3d77"
+                }
+              ],
+              "createdAt": "2026-07-28T03:37:26.000Z",
+              "updatedAt": "2026-07-28T03:37:26.000Z",
+              "uid": "35240-1611d4e3-6f91-4086-bcc8-6f7b51e697b6"
+            }
+          ],
+          "id": "f04a9c40-ce9b-4d91-8765-2a1e415eea0f",
+          "createdAt": "2026-07-28T03:37:26.000Z",
+          "updatedAt": "2026-07-28T03:37:26.000Z",
+          "uid": "35240-f04a9c40-ce9b-4d91-8765-2a1e415eea0f"
+        },
+        {
+          "name": "Zendit List Transactions",
+          "id": "b78df1c6-67d6-4ae6-8503-90270fd65681",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transactions?_limit=100&_offset=0&status=IN_PROGRESS",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ],
+              "query": [
+                {
+                  "description": "(Required) Items per page (1-1024).",
+                  "key": "_limit",
+                  "value": "100"
+                },
+                {
+                  "description": "(Required) Pagination offset.",
+                  "key": "_offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Transaction status filter.",
+                  "key": "status",
+                  "value": "IN_PROGRESS"
+                }
+              ]
+            },
+            "description": "List all transactions across product types."
+          },
+          "response": [
+            {
+              "id": "fcf99e0d-6962-4fc0-a9cf-cbef4b3ee810",
+              "name": "List of transactions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?_limit=100&_offset=0&status=IN_PROGRESS",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Items per page (1-1024).",
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "description": "(Required) Pagination offset.",
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Transaction status filter.",
+                      "key": "status",
+                      "value": "IN_PROGRESS"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"list\": [\n    {\n      \"transactionId\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"history\": [\n        {\n          \"status\": \"<string>\",\n          \"timestamp\": \"<dateTime>\"\n        },\n        {\n          \"status\": \"<string>\",\n          \"timestamp\": \"<dateTime>\"\n        }\n      ]\n    },\n    {\n      \"transactionId\": \"<string>\",\n      \"type\": \"<string>\",\n      \"status\": \"<string>\",\n      \"createdAt\": \"<dateTime>\",\n      \"history\": [\n        {\n          \"status\": \"<string>\",\n          \"timestamp\": \"<dateTime>\"\n        },\n        {\n          \"status\": \"<string>\",\n          \"timestamp\": \"<dateTime>\"\n        }\n      ]\n    }\n  ],\n  \"offset\": \"<integer>\",\n  \"limit\": \"<integer>\",\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:37:26.000Z",
+              "updatedAt": "2026-07-28T03:37:26.000Z",
+              "uid": "35240-fcf99e0d-6962-4fc0-a9cf-cbef4b3ee810"
+            }
+          ],
+          "createdAt": "2026-07-28T03:37:26.000Z",
+          "updatedAt": "2026-07-28T03:37:26.000Z",
+          "uid": "35240-b78df1c6-67d6-4ae6-8503-90270fd65681"
+        }
+      ],
+      "id": "197b8c1d-31ef-4277-881a-4ae139524779",
+      "createdAt": "2026-07-28T03:37:26.000Z",
+      "updatedAt": "2026-07-28T03:37:26.000Z",
+      "uid": "35240-197b8c1d-31ef-4277-881a-4ae139524779"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.zendit.io/v1"
+    }
+  ]
+}

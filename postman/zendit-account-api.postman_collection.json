@@ -1,0 +1,154 @@
+{
+  "info": {
+    "_postman_id": "05de305e-648b-49b0-99aa-5d6c32620a0e",
+    "name": "Zendit Account API",
+    "description": "The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.\n\nContact Support:\n Name: Zendit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:37:09.000Z",
+    "updatedAt": "2026-07-28T03:37:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-05de305e-648b-49b0-99aa-5d6c32620a0e"
+  },
+  "item": [
+    {
+      "name": "balance",
+      "item": [
+        {
+          "name": "Zendit Get Balance",
+          "id": "854e4bfe-21b2-45f8-82be-4e25002bd940",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/balance",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "balance"
+              ]
+            },
+            "description": "Retrieve wallet balance and currency information."
+          },
+          "response": [
+            {
+              "id": "51c1e29a-9998-4340-a5e5-492c75b53f07",
+              "name": "Wallet balance",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/balance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "balance"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"amount\": \"<number>\",\n  \"currency\": \"<string>\",\n  \"accountId\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:37:10.000Z",
+              "updatedAt": "2026-07-28T03:37:10.000Z",
+              "uid": "35240-51c1e29a-9998-4340-a5e5-492c75b53f07"
+            },
+            {
+              "id": "67334b5e-8851-4295-adf8-a6a237bea2d1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/balance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "balance"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"description\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:37:10.000Z",
+              "updatedAt": "2026-07-28T03:37:10.000Z",
+              "uid": "35240-67334b5e-8851-4295-adf8-a6a237bea2d1"
+            }
+          ],
+          "createdAt": "2026-07-28T03:37:10.000Z",
+          "updatedAt": "2026-07-28T03:37:10.000Z",
+          "uid": "35240-854e4bfe-21b2-45f8-82be-4e25002bd940"
+        }
+      ],
+      "id": "e1b16fb9-4c57-440d-9bcf-d6119d2c4a8a",
+      "createdAt": "2026-07-28T03:37:10.000Z",
+      "updatedAt": "2026-07-28T03:37:10.000Z",
+      "uid": "35240-e1b16fb9-4c57-440d-9bcf-d6119d2c4a8a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.zendit.io/v1"
+    }
+  ]
+}

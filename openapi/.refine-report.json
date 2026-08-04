@@ -1,0 +1,28 @@
+{
+  "provider": "zendit",
+  "sources": [
+    "zendit-account-api-openapi.yml",
+    "zendit-brands-api-openapi.yml",
+    "zendit-esim-api-openapi.yml",
+    "zendit-mobile-top-up-api-openapi.yml",
+    "zendit-reports-api-openapi.yml",
+    "zendit-tools-api-openapi.yml",
+    "zendit-transactions-api-openapi.yml",
+    "zendit-vouchers-api-openapi.yml"
+  ],
+  "outputs": [
+    "zendit-account-api-openapi.yml",
+    "zendit-brands-api-openapi.yml",
+    "zendit-esim-api-openapi.yml",
+    "zendit-mobile-top-up-api-openapi.yml",
+    "zendit-reports-api-openapi.yml",
+    "zendit-tools-api-openapi.yml",
+    "zendit-transactions-api-openapi.yml",
+    "zendit-vouchers-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
