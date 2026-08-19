@@ -1,0 +1,138 @@
+{
+  "item": [
+    {
+      "id": "6b90173e-31d5-4427-82df-c55b5d30ca5c",
+      "name": "Tools",
+      "description": {
+        "content": "Utility endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "59b2e84c-ad44-4511-a552-07595413f2b5",
+          "name": "Zendit Lookup Phone Number",
+          "request": {
+            "name": "Zendit Lookup Phone Number",
+            "description": {
+              "content": "Identify carrier from phone number in E.164 format. BETA endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tools",
+                "phonenumberlookup",
+                ":msisdn"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "msisdn",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "146b3cb6-e223-46af-b7ef-bc70c1d59024",
+              "name": "Lookup result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tools",
+                    "phonenumberlookup",
+                    ":msisdn"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "msisdn",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"msisdn\": \"+15555550100\",\n  \"country\": \"US\",\n  \"carrier\": \"Example Mobile\",\n  \"brand\": \"rebel-prepaid\",\n  \"type\": \"MOBILE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zendit.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f73d1639-e2b6-4af6-add8-f4e3e7b56c55",
+    "name": "Zendit Account Tools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.\n\nContact Support:\n Name: Zendit",
+      "type": "text/plain"
+    }
+  }
+}

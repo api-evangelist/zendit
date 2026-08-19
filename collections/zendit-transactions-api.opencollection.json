@@ -1,0 +1,76 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zendit Account Transactions API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit List Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/transactions",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "status",
+                "value": "DONE",
+                "type": "query",
+                "description": "Transaction status filter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all transactions across product types."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get transaction with full history log."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

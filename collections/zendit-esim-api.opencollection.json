@@ -1,0 +1,249 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zendit Account eSIM API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "eSIM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit List ESIM Offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/offers",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "country",
+                "value": "US",
+                "type": "query",
+                "description": "Two-letter ISO country code."
+              },
+              {
+                "name": "regions",
+                "value": "Global",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Browse eSIM plans by region or country."
+        },
+        {
+          "info": {
+            "name": "Zendit Get ESIM Offer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/offers/:offerId",
+            "params": [
+              {
+                "name": "offerId",
+                "value": "offer-12345",
+                "type": "path",
+                "description": "Offer identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get eSIM plan specifications."
+        },
+        {
+          "info": {
+            "name": "Zendit List ESIM Purchases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/purchases",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "status",
+                "value": "DONE",
+                "type": "query",
+                "description": "Transaction status filter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List eSIM transactions."
+        },
+        {
+          "info": {
+            "name": "Zendit Create ESIM Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zendit.io/v1/esim/purchases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Purchase new eSIM or add plan to existing eSIM."
+        },
+        {
+          "info": {
+            "name": "Zendit Get ESIM Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/purchases/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check eSIM transaction status."
+        },
+        {
+          "info": {
+            "name": "Zendit Get ESIM QR Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/purchases/:transactionId/qrcode",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve activation QR code as PNG image."
+        },
+        {
+          "info": {
+            "name": "Zendit Get ESIM Plans",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/:iccId/plans",
+            "params": [
+              {
+                "name": "iccId",
+                "value": "8901260000000000001",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Monitor active/queued plans and data usage."
+        },
+        {
+          "info": {
+            "name": "Zendit Get ESIM Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/esim/purchases/:transactionId/refund",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check refund status for eSIM purchase."
+        },
+        {
+          "info": {
+            "name": "Zendit Create ESIM Refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zendit.io/v1/esim/purchases/:transactionId/refund",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Initiate refund request for eSIM purchase."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

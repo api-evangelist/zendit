@@ -1,0 +1,1032 @@
+{
+  "item": [
+    {
+      "id": "9960b3b5-ee88-4193-b018-fa9af74ee9e2",
+      "name": "eSIM",
+      "description": {
+        "content": "eSIM plans and activation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13a07c8a-1626-4cca-98ae-3b7459a030ee",
+          "name": "Zendit List ESIM Offers",
+          "request": {
+            "name": "Zendit List ESIM Offers",
+            "description": {
+              "content": "Browse eSIM plans by region or country.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esim",
+                "offers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "(Required) Items per page (1-1024)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "(Required) Pagination offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Two-letter ISO country code."
+                },
+                {
+                  "disabled": false,
+                  "key": "regions",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fd6618bc-e8e8-4519-996e-b960c22a12d9",
+              "name": "List of eSIM offers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esim",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "regions",
+                      "value": "Global"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {}\n  ],\n  \"offset\": 0,\n  \"limit\": 100,\n  \"total\": 1500\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1a1d297-990d-41f7-82a0-53e96d6b33a7",
+          "name": "Zendit Get ESIM Offer",
+          "request": {
+            "name": "Zendit Get ESIM Offer",
+            "description": {
+              "content": "Get eSIM plan specifications.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esim",
+                "offers",
+                ":offerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "offerId",
+                  "description": "(Required) Offer identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "31d5bb09-706c-427a-8325-bca826b4a8f9",
+              "name": "eSIM offer detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esim",
+                    "offers",
+                    ":offerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offerId",
+                      "description": "(Required) Offer identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offerId\": \"offer-12345\",\n  \"name\": \"Rebel Prepaid 10 USD\",\n  \"brand\": \"rebel-prepaid\",\n  \"country\": \"US\",\n  \"type\": \"TOPUP\",\n  \"subType\": \"Mobile Top Up\",\n  \"price\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"send\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"receive\": {\n    \"amount\": {},\n    \"currency\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec918320-d1de-4719-8a56-f215ef7067cf",
+          "name": "Zendit List ESIM Purchases",
+          "request": {
+            "name": "Zendit List ESIM Purchases",
+            "description": {
+              "content": "List eSIM transactions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esim",
+                "purchases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "(Required) Items per page (1-1024)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "(Required) Pagination offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Transaction status filter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6816ce26-45fd-4702-9639-eb4c256099b0",
+              "name": "List of eSIM purchases",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esim",
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "DONE"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {}\n  ],\n  \"offset\": 0,\n  \"limit\": 100,\n  \"total\": 50\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e32de182-c44c-46c7-acb0-a5c8f4cc803d",
+          "name": "Zendit Create ESIM Purchase",
+          "request": {
+            "name": "Zendit Create ESIM Purchase",
+            "description": {
+              "content": "Purchase new eSIM or add plan to existing eSIM.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esim",
+                "purchases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offerId\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"iccId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d6a5681-0002-42a6-bcae-4dd2abd5107a",
+              "name": "Purchase created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esim",
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": \"my-txn-abc123\",\n  \"offerId\": \"esim-offer-001\",\n  \"iccId\": \"8901260000000000001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"txn-abc123\",\n  \"offerId\": \"offer-12345\",\n  \"status\": \"DONE\",\n  \"type\": \"TOPUP\",\n  \"createdAt\": \"2026-05-01T12:00:00Z\",\n  \"send\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"receive\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50d53a7d-5559-4f97-8e2f-4f2194374d15",
+          "name": "Zendit Get ESIM Purchase",
+          "request": {
+            "name": "Zendit Get ESIM Purchase",
+            "description": {
+              "content": "Check eSIM transaction status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esim",
+                "purchases",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) Transaction identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5be844cf-5d15-4eae-82ca-0a7b3a93fbff",
+              "name": "eSIM purchase",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esim",
+                    "purchases",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"txn-abc123\",\n  \"offerId\": \"offer-12345\",\n  \"status\": \"DONE\",\n  \"type\": \"TOPUP\",\n  \"createdAt\": \"2026-05-01T12:00:00Z\",\n  \"send\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"receive\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c5827aa-547a-48d8-8f6b-d4b14a47b626",
+          "name": "Zendit Get ESIM QR Code",
+          "request": {
+            "name": "Zendit Get ESIM QR Code",
+            "description": {
+              "content": "Retrieve activation QR code as PNG image.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esim",
+                "purchases",
+                ":transactionId",
+                "qrcode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) Transaction identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/png"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9c33f532-e4de-4ab6-b2ab-b5e640875564",
+              "name": "QR code image",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esim",
+                    "purchases",
+                    ":transactionId",
+                    "qrcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "image/png"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/png"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f18245f-54b9-47d0-9fda-889b4f14918b",
+          "name": "Zendit Get ESIM Plans",
+          "request": {
+            "name": "Zendit Get ESIM Plans",
+            "description": {
+              "content": "Monitor active/queued plans and data usage.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esim",
+                ":iccId",
+                "plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "iccId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "895d3002-4a81-4061-8ae0-a3c3aeaa1405",
+              "name": "List of eSIM plans",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esim",
+                    ":iccId",
+                    "plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "iccId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"iccId\": \"8901260000000000001\",\n  \"plans\": [\n    {}\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8438f26b-712d-4bc6-b96a-b54258c07b72",
+          "name": "Zendit Get ESIM Refund",
+          "request": {
+            "name": "Zendit Get ESIM Refund",
+            "description": {
+              "content": "Check refund status for eSIM purchase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esim",
+                "purchases",
+                ":transactionId",
+                "refund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) Transaction identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d716628e-1994-46f2-b54d-0911314f9aba",
+              "name": "Refund status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esim",
+                    "purchases",
+                    ":transactionId",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"500123\",\n  \"refundId\": \"refund-abc123\",\n  \"status\": \"APPROVED\",\n  \"amount\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"createdAt\": \"2026-05-01T12:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0bfd8f45-5cb8-4f42-b032-7cb993a50d43",
+          "name": "Zendit Create ESIM Refund",
+          "request": {
+            "name": "Zendit Create ESIM Refund",
+            "description": {
+              "content": "Initiate refund request for eSIM purchase.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esim",
+                "purchases",
+                ":transactionId",
+                "refund"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) Transaction identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5ef81f80-0698-4162-b279-686e6b7be0e6",
+              "name": "Refund initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esim",
+                    "purchases",
+                    ":transactionId",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"500123\",\n  \"refundId\": \"refund-abc123\",\n  \"status\": \"APPROVED\",\n  \"amount\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"createdAt\": \"2026-05-01T12:00:00Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zendit.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f375ecb0-318d-4a44-ab40-548959150d0f",
+    "name": "Zendit Account eSIM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.\n\nContact Support:\n Name: Zendit",
+      "type": "text/plain"
+    }
+  }
+}

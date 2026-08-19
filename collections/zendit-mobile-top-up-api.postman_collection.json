@@ -1,0 +1,663 @@
+{
+  "item": [
+    {
+      "id": "0a7944ec-28f0-45f8-aa4b-3603ab4068fa",
+      "name": "Mobile Top-Up",
+      "description": {
+        "content": "Mobile credit top-ups, bundles, and data plans",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d54ff0ec-eca1-4600-9041-da2c70d9fda4",
+          "name": "Zendit List Topup Offers",
+          "request": {
+            "name": "Zendit List Topup Offers",
+            "description": {
+              "content": "List top-up, bundle, and data offers with filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topups",
+                "offers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "(Required) Items per page (1-1024)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "(Required) Pagination offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Two-letter ISO country code."
+                },
+                {
+                  "disabled": false,
+                  "key": "brand",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "subType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "860a7f26-5e58-4a0e-b6b7-8b52fce13f8d",
+              "name": "List of offers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topups",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    },
+                    {
+                      "key": "brand",
+                      "value": "example-value"
+                    },
+                    {
+                      "key": "subType",
+                      "value": "Mobile Top Up"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {}\n  ],\n  \"offset\": 0,\n  \"limit\": 100,\n  \"total\": 1500\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef556565-495c-4f7f-8a9a-e110f75107dd",
+          "name": "Zendit Get Topup Offer",
+          "request": {
+            "name": "Zendit Get Topup Offer",
+            "description": {
+              "content": "Retrieve specific top-up offer details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topups",
+                "offers",
+                ":offerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "offerId",
+                  "description": "(Required) Offer identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0c2721c1-5db3-4152-8213-0344ed0bd889",
+              "name": "Offer detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topups",
+                    "offers",
+                    ":offerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offerId",
+                      "description": "(Required) Offer identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offerId\": \"offer-12345\",\n  \"name\": \"Rebel Prepaid 10 USD\",\n  \"brand\": \"rebel-prepaid\",\n  \"country\": \"US\",\n  \"type\": \"TOPUP\",\n  \"subType\": \"Mobile Top Up\",\n  \"price\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"send\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"receive\": {\n    \"amount\": {},\n    \"currency\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff0941b8-4d41-4a14-8f3d-0bd536a0ba4d",
+          "name": "Zendit List Topup Purchases",
+          "request": {
+            "name": "Zendit List Topup Purchases",
+            "description": {
+              "content": "Query top-up transactions with date and status filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topups",
+                "purchases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "(Required) Items per page (1-1024)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "(Required) Pagination offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Transaction status filter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c8440e27-c7b7-4cfe-896b-5bd38ac95634",
+              "name": "List of purchases",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topups",
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "DONE"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {}\n  ],\n  \"offset\": 0,\n  \"limit\": 100,\n  \"total\": 50\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f37f3a8c-43dd-4784-82d9-86c43e829ba4",
+          "name": "Zendit Create Topup Purchase",
+          "request": {
+            "name": "Zendit Create Topup Purchase",
+            "description": {
+              "content": "Create new top-up transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topups",
+                "purchases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offerId\": \"<string>\",\n  \"subscriberNumber\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"sendValue\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1f9d057f-c8e0-4270-877a-8bd5866c2c0b",
+              "name": "Purchase created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topups",
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": \"my-txn-abc123\",\n  \"offerId\": \"offer-12345\",\n  \"subscriberNumber\": \"+15555550100\",\n  \"sendValue\": {\n    \"amount\": {},\n    \"currency\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"txn-abc123\",\n  \"offerId\": \"offer-12345\",\n  \"status\": \"DONE\",\n  \"type\": \"TOPUP\",\n  \"createdAt\": \"2026-05-01T12:00:00Z\",\n  \"send\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"receive\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "576b09da-2838-460c-9aa4-4cb0777783fa",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topups",
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": \"my-txn-abc123\",\n  \"offerId\": \"offer-12345\",\n  \"subscriberNumber\": \"+15555550100\",\n  \"sendValue\": {\n    \"amount\": {},\n    \"currency\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"INVALID_REQUEST\",\n  \"description\": \"The request is missing required parameter offerId.\",\n  \"message\": \"offerId is required.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2be8484f-b761-4547-858e-f6667dcb4d24",
+          "name": "Zendit Get Topup Purchase",
+          "request": {
+            "name": "Zendit Get Topup Purchase",
+            "description": {
+              "content": "Fetch top-up transaction status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "topups",
+                "purchases",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) Transaction identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4d5f384e-affd-4c8d-bf63-9dccabe841d7",
+              "name": "Purchase detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "topups",
+                    "purchases",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"txn-abc123\",\n  \"offerId\": \"offer-12345\",\n  \"status\": \"DONE\",\n  \"type\": \"TOPUP\",\n  \"createdAt\": \"2026-05-01T12:00:00Z\",\n  \"send\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"receive\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zendit.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bf553179-9965-4884-b69e-45a89e1137b3",
+    "name": "Zendit Account Mobile Top-Up API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.\n\nContact Support:\n Name: Zendit",
+      "type": "text/plain"
+    }
+  }
+}

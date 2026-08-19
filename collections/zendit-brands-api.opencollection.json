@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zendit Account Brands API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Brands",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit List Brands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/brands",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "country",
+                "value": "US",
+                "type": "query",
+                "description": "Two-letter ISO country code."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List available brands with pagination and optional country filtering."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Brand",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/brands/:brand",
+            "params": [
+              {
+                "name": "brand",
+                "value": "rebel-prepaid",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get brand details, logos, and metadata."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Brand Redemption Instructions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/brands/:brand/redemptionInstructions",
+            "params": [
+              {
+                "name": "brand",
+                "value": "example-value",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetch redemption terms and conditions by delivery type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

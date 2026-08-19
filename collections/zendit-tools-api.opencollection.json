@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zendit Account Tools API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit Lookup Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/tools/phonenumberlookup/:msisdn",
+            "params": [
+              {
+                "name": "msisdn",
+                "value": "+15555550100",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Identify carrier from phone number in E.164 format. BETA endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

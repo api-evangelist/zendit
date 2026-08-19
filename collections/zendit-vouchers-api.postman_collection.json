@@ -1,0 +1,583 @@
+{
+  "item": [
+    {
+      "id": "da3b97f7-31b1-4186-8887-46916f32be7b",
+      "name": "Vouchers",
+      "description": {
+        "content": "Digital gift cards and utility bill payments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cb968173-a609-49c8-8708-41c1223ad237",
+          "name": "Zendit List Voucher Offers",
+          "request": {
+            "name": "Zendit List Voucher Offers",
+            "description": {
+              "content": "List gift card and utility offers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vouchers",
+                "offers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "(Required) Items per page (1-1024)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "(Required) Pagination offset."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Two-letter ISO country code."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ca9e07c3-41dc-4910-9606-da02faa216a4",
+              "name": "List of voucher offers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "country",
+                      "value": "US"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {}\n  ],\n  \"offset\": 0,\n  \"limit\": 100,\n  \"total\": 1500\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7042b218-b2dc-4cd3-a8d3-dd5f31f3ff7f",
+          "name": "Zendit Get Voucher Offer",
+          "request": {
+            "name": "Zendit Get Voucher Offer",
+            "description": {
+              "content": "Get voucher offer details with required fields.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vouchers",
+                "offers",
+                ":offerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "offerId",
+                  "description": "(Required) Offer identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b6c6f6ad-891e-4ca9-8828-ae8e7ef50936",
+              "name": "Voucher offer detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers",
+                    "offers",
+                    ":offerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "offerId",
+                      "description": "(Required) Offer identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"offerId\": \"offer-12345\",\n  \"name\": \"Rebel Prepaid 10 USD\",\n  \"brand\": \"rebel-prepaid\",\n  \"country\": \"US\",\n  \"type\": \"TOPUP\",\n  \"subType\": \"Mobile Top Up\",\n  \"price\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"send\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"receive\": {\n    \"amount\": {},\n    \"currency\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3c2584b-c7f5-49ab-b110-c9907ceef30f",
+          "name": "Zendit List Voucher Purchases",
+          "request": {
+            "name": "Zendit List Voucher Purchases",
+            "description": {
+              "content": "Query voucher transactions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vouchers",
+                "purchases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "_limit",
+                  "value": "100",
+                  "description": "(Required) Items per page (1-1024)."
+                },
+                {
+                  "disabled": false,
+                  "key": "_offset",
+                  "value": "0",
+                  "description": "(Required) Pagination offset."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c7c89283-40f5-4bc4-aa80-77302377d8eb",
+              "name": "List of voucher purchases",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers",
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "_limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "_offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"list\": [\n    {}\n  ],\n  \"offset\": 0,\n  \"limit\": 100,\n  \"total\": 50\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c421739-a333-4c39-8f54-7d3f82ff5686",
+          "name": "Zendit Create Voucher Purchase",
+          "request": {
+            "name": "Zendit Create Voucher Purchase",
+            "description": {
+              "content": "Create gift card or utility payment transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vouchers",
+                "purchases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offerId\": \"<string>\",\n  \"transactionId\": \"<string>\",\n  \"sendValue\": {\n    \"amount\": \"<number>\",\n    \"currency\": \"<string>\"\n  },\n  \"recipient\": {\n    \"email\": \"<email>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "06e8cb1f-8fff-494f-9e11-98eb0366f823",
+              "name": "Voucher purchase created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers",
+                    "purchases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": \"my-txn-abc123\",\n  \"offerId\": \"voucher-offer-001\",\n  \"sendValue\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"recipient\": {\n    \"email\": \"recipient@example.com\",\n    \"firstName\": \"Jane\",\n    \"lastName\": \"Smith\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"txn-abc123\",\n  \"offerId\": \"offer-12345\",\n  \"status\": \"DONE\",\n  \"type\": \"TOPUP\",\n  \"createdAt\": \"2026-05-01T12:00:00Z\",\n  \"send\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"receive\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e095e1ce-de55-4687-9fc4-bf7136163396",
+          "name": "Zendit Get Voucher Purchase",
+          "request": {
+            "name": "Zendit Get Voucher Purchase",
+            "description": {
+              "content": "Retrieve voucher transaction with receipt data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vouchers",
+                "purchases",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) Transaction identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0b1d60f8-19cd-42cb-893e-b425bbd362cc",
+              "name": "Voucher purchase detail",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers",
+                    "purchases",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) Transaction identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactionId\": \"txn-abc123\",\n  \"offerId\": \"offer-12345\",\n  \"status\": \"DONE\",\n  \"type\": \"TOPUP\",\n  \"createdAt\": \"2026-05-01T12:00:00Z\",\n  \"send\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"receive\": {\n    \"amount\": {},\n    \"currency\": {}\n  },\n  \"details\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.zendit.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "bb07d3a2-dbee-43be-bc38-631aaf056c97",
+    "name": "Zendit Account Vouchers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.\n\nContact Support:\n Name: Zendit",
+      "type": "text/plain"
+    }
+  }
+}

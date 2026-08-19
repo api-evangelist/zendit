@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zendit Account Reports API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit Create Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zendit.io/v1/reports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Generate transaction report (CSV) asynchronously."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Check report generation status."
+        },
+        {
+          "info": {
+            "name": "Zendit Download Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/reports/:reportId/download",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "500123",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Download completed report file (CSV)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

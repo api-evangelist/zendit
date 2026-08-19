@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Zendit Account Mobile Top-Up API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mobile Top-Up",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Zendit List Topup Offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/topups/offers",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "country",
+                "value": "US",
+                "type": "query",
+                "description": "Two-letter ISO country code."
+              },
+              {
+                "name": "brand",
+                "value": "example-value",
+                "type": "query"
+              },
+              {
+                "name": "subType",
+                "value": "Mobile Top Up",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List top-up, bundle, and data offers with filters."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Topup Offer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/topups/offers/:offerId",
+            "params": [
+              {
+                "name": "offerId",
+                "value": "offer-12345",
+                "type": "path",
+                "description": "Offer identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve specific top-up offer details."
+        },
+        {
+          "info": {
+            "name": "Zendit List Topup Purchases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/topups/purchases",
+            "params": [
+              {
+                "name": "_limit",
+                "value": "100",
+                "type": "query",
+                "description": "Items per page (1-1024)."
+              },
+              {
+                "name": "_offset",
+                "value": "0",
+                "type": "query",
+                "description": "Pagination offset."
+              },
+              {
+                "name": "status",
+                "value": "DONE",
+                "type": "query",
+                "description": "Transaction status filter."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Query top-up transactions with date and status filters."
+        },
+        {
+          "info": {
+            "name": "Zendit Create Topup Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.zendit.io/v1/topups/purchases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Create new top-up transaction."
+        },
+        {
+          "info": {
+            "name": "Zendit Get Topup Purchase",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.zendit.io/v1/topups/purchases/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "txn-abc123",
+                "type": "path",
+                "description": "Transaction identifier."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Fetch top-up transaction status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
