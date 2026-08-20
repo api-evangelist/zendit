@@ -212,6 +212,8 @@ apis:
   humanURL: https://zendit.io/
   baseURL: https://api.zendit.io/v1
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
