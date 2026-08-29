@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Zendit Account API
   description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
@@ -58,6 +58,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Error:
+      type: object
+      description: Error response.
+      properties:
+        code:
+          type: string
+          example: INVALID_REQUEST
+        description:
+          type: string
+          example: The request is missing required parameter offerId.
+        message:
+          type: string
+          example: offerId is required.
     Balance:
       type: object
       description: Wallet balance and currency information.
@@ -74,19 +87,6 @@ components:
           type: string
           description: Account identifier.
           example: acc-12345
-    Error:
-      type: object
-      description: Error response.
-      properties:
-        code:
-          type: string
-          example: INVALID_REQUEST
-        description:
-          type: string
-          example: The request is missing required parameter offerId.
-        message:
-          type: string
-          example: offerId is required.
   securitySchemes:
     BearerAuth:
       type: http

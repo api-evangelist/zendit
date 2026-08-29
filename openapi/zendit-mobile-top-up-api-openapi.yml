@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Zendit Account Mobile Top-Up API
   description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
@@ -241,7 +241,129 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
+    Status:
+      name: status
+      in: query
+      description: Transaction status filter.
+      schema:
+        type: string
+        enum:
+        - DONE
+        - FAILED
+        - PENDING
+        - ACCEPTED
+        - AUTHORIZED
+        - IN_PROGRESS
+      example: DONE
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    OfferId:
+      name: offerId
+      in: path
+      required: true
+      description: Offer identifier.
+      schema:
+        type: string
+      example: offer-12345
   schemas:
+    PurchaseList:
+      type: object
+      description: Paginated purchase list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 50
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
+    Error:
+      type: object
+      description: Error response.
+      properties:
+        code:
+          type: string
+          example: INVALID_REQUEST
+        description:
+          type: string
+          example: The request is missing required parameter offerId.
+        message:
+          type: string
+          example: offerId is required.
+    OfferList:
+      type: object
+      description: Paginated offer list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 1500
     TopupPurchaseRequest:
       type: object
       description: Top-up purchase request.
@@ -297,19 +419,6 @@ components:
           $ref: '#/components/schemas/Price'
         receive:
           $ref: '#/components/schemas/Price'
-    Error:
-      type: object
-      description: Error response.
-      properties:
-        code:
-          type: string
-          example: INVALID_REQUEST
-        description:
-          type: string
-          example: The request is missing required parameter offerId.
-        message:
-          type: string
-          example: offerId is required.
     Purchase:
       type: object
       description: Purchase transaction.
@@ -346,115 +455,6 @@ components:
           additionalProperties: true
           description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
           example: {}
-    PurchaseList:
-      type: object
-      description: Paginated purchase list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Purchase'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 50
-    Price:
-      type: object
-      description: Monetary amount with currency.
-      properties:
-        amount:
-          type: number
-          example: 10.0
-        currency:
-          type: string
-          example: USD
-    OfferList:
-      type: object
-      description: Paginated offer list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Offer'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 1500
-  parameters:
-    Limit:
-      name: _limit
-      in: query
-      required: true
-      description: Items per page (1-1024).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1024
-        default: 100
-      example: 100
-    OfferId:
-      name: offerId
-      in: path
-      required: true
-      description: Offer identifier.
-      schema:
-        type: string
-      example: offer-12345
-    Offset:
-      name: _offset
-      in: query
-      required: true
-      description: Pagination offset.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      example: 0
-    TransactionId:
-      name: transactionId
-      in: path
-      required: true
-      description: Transaction identifier.
-      schema:
-        type: string
-      example: txn-abc123
-    Country:
-      name: country
-      in: query
-      description: Two-letter ISO country code.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-      example: US
-    Status:
-      name: status
-      in: query
-      description: Transaction status filter.
-      schema:
-        type: string
-        enum:
-        - DONE
-        - FAILED
-        - PENDING
-        - ACCEPTED
-        - AUTHORIZED
-        - IN_PROGRESS
-      example: DONE
   securitySchemes:
     BearerAuth:
       type: http

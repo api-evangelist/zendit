@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Zendit Account Reports API
   description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
@@ -121,28 +121,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ReportRequest:
-      type: object
-      description: Asynchronous report generation request.
-      required:
-      - dateFrom
-      - dateTo
-      properties:
-        dateFrom:
-          type: string
-          format: date
-          example: '2026-04-01'
-        dateTo:
-          type: string
-          format: date
-          example: '2026-04-30'
-        type:
-          type: string
-          enum:
-          - TRANSACTIONS
-          - BALANCE
-          - COMMISSION
-          example: TRANSACTIONS
     Report:
       type: object
       description: Asynchronous report job.
@@ -166,6 +144,28 @@ components:
           type: string
           format: date-time
           example: '2026-05-01T12:00:00Z'
+    ReportRequest:
+      type: object
+      description: Asynchronous report generation request.
+      required:
+      - dateFrom
+      - dateTo
+      properties:
+        dateFrom:
+          type: string
+          format: date
+          example: '2026-04-01'
+        dateTo:
+          type: string
+          format: date
+          example: '2026-04-30'
+        type:
+          type: string
+          enum:
+          - TRANSACTIONS
+          - BALANCE
+          - COMMISSION
+          example: TRANSACTIONS
   securitySchemes:
     BearerAuth:
       type: http

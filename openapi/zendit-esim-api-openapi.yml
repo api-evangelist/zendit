@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Zendit Account eSIM API
+  title: Zendit Account E SIM API
   description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
   version: 1.0.0
   x-generated-from: documentation
@@ -360,6 +360,113 @@ components:
           type: string
           description: ICC ID of existing eSIM (for adding plan to existing eSIM).
           example: '8901260000000000001'
+    EsimPlan:
+      type: object
+      description: Active or queued eSIM plan.
+      properties:
+        planId:
+          type: string
+          example: plan-abc123
+        status:
+          type: string
+          example: ACTIVE
+        dataUsed:
+          type: number
+          description: Data used in MB.
+          example: 1024.5
+        dataTotal:
+          type: number
+          description: Total data in MB.
+          example: 5120.0
+        validUntil:
+          type: string
+          format: date-time
+          example: '2026-06-01T00:00:00Z'
+    Refund:
+      type: object
+      description: Refund status for an eSIM purchase.
+      properties:
+        transactionId:
+          type: string
+          example: '500123'
+        refundId:
+          type: string
+          example: refund-abc123
+        status:
+          type: string
+          enum:
+          - REQUESTED
+          - APPROVED
+          - COMPLETED
+          - REJECTED
+          example: APPROVED
+        amount:
+          $ref: '#/components/schemas/Price'
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-05-01T12:00:00Z'
+    EsimPlanList:
+      type: object
+      description: List of eSIM plans for an ICC ID.
+      properties:
+        iccId:
+          type: string
+          example: '8901260000000000001'
+        plans:
+          type: array
+          items:
+            $ref: '#/components/schemas/EsimPlan'
+          example:
+          - {}
+    PurchaseList:
+      type: object
+      description: Paginated purchase list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 50
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
+    OfferList:
+      type: object
+      description: Paginated offer list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 1500
     Offer:
       type: object
       description: Product offer (top-up, eSIM, voucher).
@@ -430,151 +537,7 @@ components:
           additionalProperties: true
           description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
           example: {}
-    Refund:
-      type: object
-      description: Refund status for an eSIM purchase.
-      properties:
-        transactionId:
-          type: string
-          example: '500123'
-        refundId:
-          type: string
-          example: refund-abc123
-        status:
-          type: string
-          enum:
-          - REQUESTED
-          - APPROVED
-          - COMPLETED
-          - REJECTED
-          example: APPROVED
-        amount:
-          $ref: '#/components/schemas/Price'
-        createdAt:
-          type: string
-          format: date-time
-          example: '2026-05-01T12:00:00Z'
-    PurchaseList:
-      type: object
-      description: Paginated purchase list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Purchase'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 50
-    Price:
-      type: object
-      description: Monetary amount with currency.
-      properties:
-        amount:
-          type: number
-          example: 10.0
-        currency:
-          type: string
-          example: USD
-    EsimPlanList:
-      type: object
-      description: List of eSIM plans for an ICC ID.
-      properties:
-        iccId:
-          type: string
-          example: '8901260000000000001'
-        plans:
-          type: array
-          items:
-            $ref: '#/components/schemas/EsimPlan'
-          example:
-          - {}
-    EsimPlan:
-      type: object
-      description: Active or queued eSIM plan.
-      properties:
-        planId:
-          type: string
-          example: plan-abc123
-        status:
-          type: string
-          example: ACTIVE
-        dataUsed:
-          type: number
-          description: Data used in MB.
-          example: 1024.5
-        dataTotal:
-          type: number
-          description: Total data in MB.
-          example: 5120.0
-        validUntil:
-          type: string
-          format: date-time
-          example: '2026-06-01T00:00:00Z'
-    OfferList:
-      type: object
-      description: Paginated offer list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Offer'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 1500
   parameters:
-    Limit:
-      name: _limit
-      in: query
-      required: true
-      description: Items per page (1-1024).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1024
-        default: 100
-      example: 100
-    OfferId:
-      name: offerId
-      in: path
-      required: true
-      description: Offer identifier.
-      schema:
-        type: string
-      example: offer-12345
-    Offset:
-      name: _offset
-      in: query
-      required: true
-      description: Pagination offset.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      example: 0
-    TransactionId:
-      name: transactionId
-      in: path
-      required: true
-      description: Transaction identifier.
-      schema:
-        type: string
-      example: txn-abc123
     Country:
       name: country
       in: query
@@ -584,6 +547,14 @@ components:
         minLength: 2
         maxLength: 2
       example: US
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
     Status:
       name: status
       in: query
@@ -598,6 +569,35 @@ components:
         - AUTHORIZED
         - IN_PROGRESS
       example: DONE
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    OfferId:
+      name: offerId
+      in: path
+      required: true
+      description: Offer identifier.
+      schema:
+        type: string
+      example: offer-12345
   securitySchemes:
     BearerAuth:
       type: http

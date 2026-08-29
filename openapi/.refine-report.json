@@ -23,6 +23,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "zendit-account-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "zendit-brands-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "zendit-esim-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "zendit-mobile-top-up-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "zendit-reports-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "zendit-tools-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "zendit-transactions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "zendit-vouchers-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

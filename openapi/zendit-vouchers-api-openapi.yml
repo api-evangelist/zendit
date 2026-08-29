@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Zendit Account Vouchers API
   description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
@@ -216,6 +216,86 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    VoucherPurchaseRequest:
+      type: object
+      description: Voucher purchase request.
+      required:
+      - offerId
+      properties:
+        transactionId:
+          type: string
+          example: my-txn-abc123
+        offerId:
+          type: string
+          example: voucher-offer-001
+        sendValue:
+          $ref: '#/components/schemas/Price'
+        recipient:
+          type: object
+          description: Recipient details.
+          properties:
+            email:
+              type: string
+              format: email
+              example: recipient@example.com
+            firstName:
+              type: string
+              example: Jane
+            lastName:
+              type: string
+              example: Smith
+          example:
+            email: recipient@example.com
+            firstName: Jane
+            lastName: Smith
+    PurchaseList:
+      type: object
+      description: Paginated purchase list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 50
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
+    OfferList:
+      type: object
+      description: Paginated offer list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 1500
     Offer:
       type: object
       description: Product offer (top-up, eSIM, voucher).
@@ -286,87 +366,24 @@ components:
           additionalProperties: true
           description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
           example: {}
-    VoucherPurchaseRequest:
-      type: object
-      description: Voucher purchase request.
-      required:
-      - offerId
-      properties:
-        transactionId:
-          type: string
-          example: my-txn-abc123
-        offerId:
-          type: string
-          example: voucher-offer-001
-        sendValue:
-          $ref: '#/components/schemas/Price'
-        recipient:
-          type: object
-          description: Recipient details.
-          properties:
-            email:
-              type: string
-              format: email
-              example: recipient@example.com
-            firstName:
-              type: string
-              example: Jane
-            lastName:
-              type: string
-              example: Smith
-          example:
-            email: recipient@example.com
-            firstName: Jane
-            lastName: Smith
-    PurchaseList:
-      type: object
-      description: Paginated purchase list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Purchase'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 50
-    OfferList:
-      type: object
-      description: Paginated offer list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Offer'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 1500
-    Price:
-      type: object
-      description: Monetary amount with currency.
-      properties:
-        amount:
-          type: number
-          example: 10.0
-        currency:
-          type: string
-          example: USD
   parameters:
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
     Limit:
       name: _limit
       in: query
@@ -378,14 +395,6 @@ components:
         maximum: 1024
         default: 100
       example: 100
-    OfferId:
-      name: offerId
-      in: path
-      required: true
-      description: Offer identifier.
-      schema:
-        type: string
-      example: offer-12345
     Offset:
       name: _offset
       in: query
@@ -396,23 +405,14 @@ components:
         minimum: 0
         default: 0
       example: 0
-    TransactionId:
-      name: transactionId
+    OfferId:
+      name: offerId
       in: path
       required: true
-      description: Transaction identifier.
+      description: Offer identifier.
       schema:
         type: string
-      example: txn-abc123
-    Country:
-      name: country
-      in: query
-      description: Two-letter ISO country code.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-      example: US
+      example: offer-12345
   securitySchemes:
     BearerAuth:
       type: http
