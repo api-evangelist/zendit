@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Zendit Account Vouchers API
+  title: Zendit Vouchers API
   description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
   version: 1.0.0
   x-generated-from: documentation
@@ -267,35 +267,6 @@ components:
         total:
           type: integer
           example: 50
-    Price:
-      type: object
-      description: Monetary amount with currency.
-      properties:
-        amount:
-          type: number
-          example: 10.0
-        currency:
-          type: string
-          example: USD
-    OfferList:
-      type: object
-      description: Paginated offer list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Offer'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 1500
     Offer:
       type: object
       description: Product offer (top-up, eSIM, voucher).
@@ -330,6 +301,35 @@ components:
           $ref: '#/components/schemas/Price'
         receive:
           $ref: '#/components/schemas/Price'
+    OfferList:
+      type: object
+      description: Paginated offer list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 1500
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
     Purchase:
       type: object
       description: Purchase transaction.
@@ -367,23 +367,6 @@ components:
           description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
           example: {}
   parameters:
-    Country:
-      name: country
-      in: query
-      description: Two-letter ISO country code.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-      example: US
-    TransactionId:
-      name: transactionId
-      in: path
-      required: true
-      description: Transaction identifier.
-      schema:
-        type: string
-      example: txn-abc123
     Limit:
       name: _limit
       in: query
@@ -405,6 +388,15 @@ components:
         minimum: 0
         default: 0
       example: 0
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
     OfferId:
       name: offerId
       in: path
@@ -413,6 +405,14 @@ components:
       schema:
         type: string
       example: offer-12345
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
   securitySchemes:
     BearerAuth:
       type: http

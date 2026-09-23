@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Zendit Account Transactions API
+  title: Zendit Transactions API
   description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
   version: 1.0.0
   x-generated-from: documentation
@@ -136,6 +136,27 @@ components:
           - status: PENDING
             timestamp: '2026-05-01T12:00:00Z'
   parameters:
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
     TransactionId:
       name: transactionId
       in: path
@@ -158,27 +179,6 @@ components:
         - AUTHORIZED
         - IN_PROGRESS
       example: DONE
-    Limit:
-      name: _limit
-      in: query
-      required: true
-      description: Items per page (1-1024).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1024
-        default: 100
-      example: 100
-    Offset:
-      name: _offset
-      in: query
-      required: true
-      description: Pagination offset.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      example: 0
   securitySchemes:
     BearerAuth:
       type: http

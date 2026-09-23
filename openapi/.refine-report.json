@@ -1,38 +1,34 @@
 {
   "provider": "zendit",
   "sources": [
-    "zendit-account-api-openapi.yml",
-    "zendit-brands-api-openapi.yml",
-    "zendit-esim-api-openapi.yml",
-    "zendit-mobile-top-up-api-openapi.yml",
-    "zendit-reports-api-openapi.yml",
-    "zendit-tools-api-openapi.yml",
-    "zendit-transactions-api-openapi.yml",
-    "zendit-vouchers-api-openapi.yml"
+    "_ae-authored/zendit-api.yml"
   ],
   "outputs": [
     "zendit-account-api-openapi.yml",
     "zendit-brands-api-openapi.yml",
-    "zendit-esim-api-openapi.yml",
     "zendit-mobile-top-up-api-openapi.yml",
     "zendit-reports-api-openapi.yml",
     "zendit-tools-api-openapi.yml",
     "zendit-transactions-api-openapi.yml",
-    "zendit-vouchers-api-openapi.yml"
+    "zendit-vouchers-api-openapi.yml",
+    "zendit-esim-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
-    "zendit-account-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "zendit-brands-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "zendit-esim-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "zendit-mobile-top-up-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "zendit-reports-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "zendit-tools-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "zendit-transactions-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "zendit-vouchers-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "zendit-api.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "zendit-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zendit-brands-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zendit-esim-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zendit-mobile-top-up-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zendit-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zendit-tools-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zendit-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "zendit-vouchers-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

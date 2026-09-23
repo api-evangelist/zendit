@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Zendit Account Tools API
+  title: Zendit Tools API
   description: The Zendit API provides programmatic access to a global prepaid ecosystem, enabling mobile credit top-ups, data packages, digital gift cards, prepaid utility bill payments, and eSIM products through a unified integration.
   version: 1.0.0
   x-generated-from: documentation
