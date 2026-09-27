@@ -121,39 +121,38 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
   schemas:
-    BrandList:
-      type: object
-      description: Paginated brand list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Brand'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 250
-    RedemptionInstructions:
-      type: object
-      description: Brand redemption terms by delivery type.
-      properties:
-        deliveryType:
-          type: string
-          example: SMS
-        instructions:
-          type: string
-          example: Dial *123# from your phone to redeem.
-        termsAndConditions:
-          type: string
-          example: Valid for 30 days from purchase.
     Brand:
       type: object
       description: Brand catalog entry.
@@ -183,37 +182,38 @@ components:
           example:
           - Mobile Top Up
           - Bundle
-  parameters:
-    Limit:
-      name: _limit
-      in: query
-      required: true
-      description: Items per page (1-1024).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1024
-        default: 100
-      example: 100
-    Offset:
-      name: _offset
-      in: query
-      required: true
-      description: Pagination offset.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      example: 0
-    Country:
-      name: country
-      in: query
-      description: Two-letter ISO country code.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-      example: US
+    RedemptionInstructions:
+      type: object
+      description: Brand redemption terms by delivery type.
+      properties:
+        deliveryType:
+          type: string
+          example: SMS
+        instructions:
+          type: string
+          example: Dial *123# from your phone to redeem.
+        termsAndConditions:
+          type: string
+          example: Valid for 30 days from purchase.
+    BrandList:
+      type: object
+      description: Paginated brand list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 250
   securitySchemes:
     BearerAuth:
       type: http

@@ -242,25 +242,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    PurchaseList:
-      type: object
-      description: Paginated purchase list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Purchase'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 50
     Error:
       type: object
       description: Error response.
@@ -274,27 +255,6 @@ components:
         message:
           type: string
           example: offerId is required.
-    TopupPurchaseRequest:
-      type: object
-      description: Top-up purchase request.
-      required:
-      - offerId
-      - subscriberNumber
-      properties:
-        transactionId:
-          type: string
-          description: Client-provided idempotency key.
-          example: my-txn-abc123
-        offerId:
-          type: string
-          description: Offer to purchase.
-          example: offer-12345
-        subscriberNumber:
-          type: string
-          description: Recipient phone number in E.164 format.
-          example: '+15555550100'
-        sendValue:
-          $ref: '#/components/schemas/Price'
     Offer:
       type: object
       description: Product offer (top-up, eSIM, voucher).
@@ -329,6 +289,27 @@ components:
           $ref: '#/components/schemas/Price'
         receive:
           $ref: '#/components/schemas/Price'
+    TopupPurchaseRequest:
+      type: object
+      description: Top-up purchase request.
+      required:
+      - offerId
+      - subscriberNumber
+      properties:
+        transactionId:
+          type: string
+          description: Client-provided idempotency key.
+          example: my-txn-abc123
+        offerId:
+          type: string
+          description: Offer to purchase.
+          example: offer-12345
+        subscriberNumber:
+          type: string
+          description: Recipient phone number in E.164 format.
+          example: '+15555550100'
+        sendValue:
+          $ref: '#/components/schemas/Price'
     OfferList:
       type: object
       description: Paginated offer list.
@@ -348,6 +329,35 @@ components:
         total:
           type: integer
           example: 1500
+    PurchaseList:
+      type: object
+      description: Paginated purchase list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 50
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
     Purchase:
       type: object
       description: Purchase transaction.
@@ -384,17 +394,31 @@ components:
           additionalProperties: true
           description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
           example: {}
-    Price:
-      type: object
-      description: Monetary amount with currency.
-      properties:
-        amount:
-          type: number
-          example: 10.0
-        currency:
-          type: string
-          example: USD
   parameters:
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    Status:
+      name: status
+      in: query
+      description: Transaction status filter.
+      schema:
+        type: string
+        enum:
+        - DONE
+        - FAILED
+        - PENDING
+        - ACCEPTED
+        - AUTHORIZED
+        - IN_PROGRESS
+      example: DONE
     Limit:
       name: _limit
       in: query
@@ -406,16 +430,6 @@ components:
         maximum: 1024
         default: 100
       example: 100
-    Offset:
-      name: _offset
-      in: query
-      required: true
-      description: Pagination offset.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      example: 0
     Country:
       name: country
       in: query
@@ -441,20 +455,6 @@ components:
       schema:
         type: string
       example: txn-abc123
-    Status:
-      name: status
-      in: query
-      description: Transaction status filter.
-      schema:
-        type: string
-        enum:
-        - DONE
-        - FAILED
-        - PENDING
-        - ACCEPTED
-        - AUTHORIZED
-        - IN_PROGRESS
-      example: DONE
   securitySchemes:
     BearerAuth:
       type: http
