@@ -241,54 +241,68 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    Status:
+      name: status
+      in: query
+      description: Transaction status filter.
+      schema:
+        type: string
+        enum:
+        - DONE
+        - FAILED
+        - PENDING
+        - ACCEPTED
+        - AUTHORIZED
+        - IN_PROGRESS
+      example: DONE
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    OfferId:
+      name: offerId
+      in: path
+      required: true
+      description: Offer identifier.
+      schema:
+        type: string
+      example: offer-12345
   schemas:
-    Error:
-      type: object
-      description: Error response.
-      properties:
-        code:
-          type: string
-          example: INVALID_REQUEST
-        description:
-          type: string
-          example: The request is missing required parameter offerId.
-        message:
-          type: string
-          example: offerId is required.
-    Offer:
-      type: object
-      description: Product offer (top-up, eSIM, voucher).
-      properties:
-        offerId:
-          type: string
-          description: Unique offer identifier.
-          example: offer-12345
-        name:
-          type: string
-          description: Offer display name.
-          example: Rebel Prepaid 10 USD
-        brand:
-          type: string
-          description: Brand identifier.
-          example: rebel-prepaid
-        country:
-          type: string
-          description: Country code.
-          example: US
-        type:
-          type: string
-          description: Offer type.
-          example: TOPUP
-        subType:
-          type: string
-          description: Offer sub-type.
-          example: Mobile Top Up
-        price:
-          $ref: '#/components/schemas/Price'
-        send:
-          $ref: '#/components/schemas/Price'
-        receive:
-          $ref: '#/components/schemas/Price'
     TopupPurchaseRequest:
       type: object
       description: Top-up purchase request.
@@ -310,6 +324,19 @@ components:
           example: '+15555550100'
         sendValue:
           $ref: '#/components/schemas/Price'
+    Error:
+      type: object
+      description: Error response.
+      properties:
+        code:
+          type: string
+          example: INVALID_REQUEST
+        description:
+          type: string
+          example: The request is missing required parameter offerId.
+        message:
+          type: string
+          example: offerId is required.
     OfferList:
       type: object
       description: Paginated offer list.
@@ -329,35 +356,6 @@ components:
         total:
           type: integer
           example: 1500
-    PurchaseList:
-      type: object
-      description: Paginated purchase list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Purchase'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 50
-    Price:
-      type: object
-      description: Monetary amount with currency.
-      properties:
-        amount:
-          type: number
-          example: 10.0
-        currency:
-          type: string
-          example: USD
     Purchase:
       type: object
       description: Purchase transaction.
@@ -394,67 +392,69 @@ components:
           additionalProperties: true
           description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
           example: {}
-  parameters:
-    Offset:
-      name: _offset
-      in: query
-      required: true
-      description: Pagination offset.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      example: 0
-    Status:
-      name: status
-      in: query
-      description: Transaction status filter.
-      schema:
-        type: string
-        enum:
-        - DONE
-        - FAILED
-        - PENDING
-        - ACCEPTED
-        - AUTHORIZED
-        - IN_PROGRESS
-      example: DONE
-    Limit:
-      name: _limit
-      in: query
-      required: true
-      description: Items per page (1-1024).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1024
-        default: 100
-      example: 100
-    Country:
-      name: country
-      in: query
-      description: Two-letter ISO country code.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-      example: US
-    OfferId:
-      name: offerId
-      in: path
-      required: true
-      description: Offer identifier.
-      schema:
-        type: string
-      example: offer-12345
-    TransactionId:
-      name: transactionId
-      in: path
-      required: true
-      description: Transaction identifier.
-      schema:
-        type: string
-      example: txn-abc123
+    PurchaseList:
+      type: object
+      description: Paginated purchase list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 50
+    Offer:
+      type: object
+      description: Product offer (top-up, eSIM, voucher).
+      properties:
+        offerId:
+          type: string
+          description: Unique offer identifier.
+          example: offer-12345
+        name:
+          type: string
+          description: Offer display name.
+          example: Rebel Prepaid 10 USD
+        brand:
+          type: string
+          description: Brand identifier.
+          example: rebel-prepaid
+        country:
+          type: string
+          description: Country code.
+          example: US
+        type:
+          type: string
+          description: Offer type.
+          example: TOPUP
+        subType:
+          type: string
+          description: Offer sub-type.
+          example: Mobile Top Up
+        price:
+          $ref: '#/components/schemas/Price'
+        send:
+          $ref: '#/components/schemas/Price'
+        receive:
+          $ref: '#/components/schemas/Price'
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
   securitySchemes:
     BearerAuth:
       type: http

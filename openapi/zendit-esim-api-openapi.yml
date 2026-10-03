@@ -344,6 +344,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    EsimPlanList:
+      type: object
+      description: List of eSIM plans for an ICC ID.
+      properties:
+        iccId:
+          type: string
+          example: '8901260000000000001'
+        plans:
+          type: array
+          items:
+            $ref: '#/components/schemas/EsimPlan'
+          example:
+          - {}
     Refund:
       type: object
       description: Refund status for an eSIM purchase.
@@ -368,53 +381,22 @@ components:
           type: string
           format: date-time
           example: '2026-05-01T12:00:00Z'
-    Offer:
+    EsimPurchaseRequest:
       type: object
-      description: Product offer (top-up, eSIM, voucher).
+      description: eSIM purchase request.
+      required:
+      - offerId
       properties:
+        transactionId:
+          type: string
+          example: my-txn-abc123
         offerId:
           type: string
-          description: Unique offer identifier.
-          example: offer-12345
-        name:
-          type: string
-          description: Offer display name.
-          example: Rebel Prepaid 10 USD
-        brand:
-          type: string
-          description: Brand identifier.
-          example: rebel-prepaid
-        country:
-          type: string
-          description: Country code.
-          example: US
-        type:
-          type: string
-          description: Offer type.
-          example: TOPUP
-        subType:
-          type: string
-          description: Offer sub-type.
-          example: Mobile Top Up
-        price:
-          $ref: '#/components/schemas/Price'
-        send:
-          $ref: '#/components/schemas/Price'
-        receive:
-          $ref: '#/components/schemas/Price'
-    EsimPlanList:
-      type: object
-      description: List of eSIM plans for an ICC ID.
-      properties:
+          example: esim-offer-001
         iccId:
           type: string
+          description: ICC ID of existing eSIM (for adding plan to existing eSIM).
           example: '8901260000000000001'
-        plans:
-          type: array
-          items:
-            $ref: '#/components/schemas/EsimPlan'
-          example:
-          - {}
     EsimPlan:
       type: object
       description: Active or queued eSIM plan.
@@ -456,51 +438,6 @@ components:
         total:
           type: integer
           example: 1500
-    EsimPurchaseRequest:
-      type: object
-      description: eSIM purchase request.
-      required:
-      - offerId
-      properties:
-        transactionId:
-          type: string
-          example: my-txn-abc123
-        offerId:
-          type: string
-          example: esim-offer-001
-        iccId:
-          type: string
-          description: ICC ID of existing eSIM (for adding plan to existing eSIM).
-          example: '8901260000000000001'
-    PurchaseList:
-      type: object
-      description: Paginated purchase list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Purchase'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 50
-    Price:
-      type: object
-      description: Monetary amount with currency.
-      properties:
-        amount:
-          type: number
-          example: 10.0
-        currency:
-          type: string
-          example: USD
     Purchase:
       type: object
       description: Purchase transaction.
@@ -537,7 +474,89 @@ components:
           additionalProperties: true
           description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
           example: {}
+    PurchaseList:
+      type: object
+      description: Paginated purchase list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 50
+    Offer:
+      type: object
+      description: Product offer (top-up, eSIM, voucher).
+      properties:
+        offerId:
+          type: string
+          description: Unique offer identifier.
+          example: offer-12345
+        name:
+          type: string
+          description: Offer display name.
+          example: Rebel Prepaid 10 USD
+        brand:
+          type: string
+          description: Brand identifier.
+          example: rebel-prepaid
+        country:
+          type: string
+          description: Country code.
+          example: US
+        type:
+          type: string
+          description: Offer type.
+          example: TOPUP
+        subType:
+          type: string
+          description: Offer sub-type.
+          example: Mobile Top Up
+        price:
+          $ref: '#/components/schemas/Price'
+        send:
+          $ref: '#/components/schemas/Price'
+        receive:
+          $ref: '#/components/schemas/Price'
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
   parameters:
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
     Status:
       name: status
       in: query
@@ -552,6 +571,15 @@ components:
         - AUTHORIZED
         - IN_PROGRESS
       example: DONE
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
     Offset:
       name: _offset
       in: query
@@ -562,26 +590,6 @@ components:
         minimum: 0
         default: 0
       example: 0
-    Limit:
-      name: _limit
-      in: query
-      required: true
-      description: Items per page (1-1024).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1024
-        default: 100
-      example: 100
-    Country:
-      name: country
-      in: query
-      description: Two-letter ISO country code.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-      example: US
     OfferId:
       name: offerId
       in: path
@@ -590,14 +598,6 @@ components:
       schema:
         type: string
       example: offer-12345
-    TransactionId:
-      name: transactionId
-      in: path
-      required: true
-      description: Transaction identifier.
-      schema:
-        type: string
-      example: txn-abc123
   securitySchemes:
     BearerAuth:
       type: http

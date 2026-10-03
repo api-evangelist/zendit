@@ -82,51 +82,26 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    Offset:
-      name: _offset
-      in: query
-      required: true
-      description: Pagination offset.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      example: 0
-    Status:
-      name: status
-      in: query
-      description: Transaction status filter.
-      schema:
-        type: string
-        enum:
-        - DONE
-        - FAILED
-        - PENDING
-        - ACCEPTED
-        - AUTHORIZED
-        - IN_PROGRESS
-      example: DONE
-    Limit:
-      name: _limit
-      in: query
-      required: true
-      description: Items per page (1-1024).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1024
-        default: 100
-      example: 100
-    TransactionId:
-      name: transactionId
-      in: path
-      required: true
-      description: Transaction identifier.
-      schema:
-        type: string
-      example: txn-abc123
   schemas:
+    TransactionList:
+      type: object
+      description: Paginated transaction list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 100
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 100
     Transaction:
       type: object
       description: Transaction with history log.
@@ -160,25 +135,50 @@ components:
           example:
           - status: PENDING
             timestamp: '2026-05-01T12:00:00Z'
-    TransactionList:
-      type: object
-      description: Paginated transaction list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 100
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 100
+  parameters:
+    Status:
+      name: status
+      in: query
+      description: Transaction status filter.
+      schema:
+        type: string
+        enum:
+        - DONE
+        - FAILED
+        - PENDING
+        - ACCEPTED
+        - AUTHORIZED
+        - IN_PROGRESS
+      example: DONE
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
   securitySchemes:
     BearerAuth:
       type: http
