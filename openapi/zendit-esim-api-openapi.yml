@@ -357,87 +357,6 @@ components:
             $ref: '#/components/schemas/EsimPlan'
           example:
           - {}
-    Refund:
-      type: object
-      description: Refund status for an eSIM purchase.
-      properties:
-        transactionId:
-          type: string
-          example: '500123'
-        refundId:
-          type: string
-          example: refund-abc123
-        status:
-          type: string
-          enum:
-          - REQUESTED
-          - APPROVED
-          - COMPLETED
-          - REJECTED
-          example: APPROVED
-        amount:
-          $ref: '#/components/schemas/Price'
-        createdAt:
-          type: string
-          format: date-time
-          example: '2026-05-01T12:00:00Z'
-    EsimPurchaseRequest:
-      type: object
-      description: eSIM purchase request.
-      required:
-      - offerId
-      properties:
-        transactionId:
-          type: string
-          example: my-txn-abc123
-        offerId:
-          type: string
-          example: esim-offer-001
-        iccId:
-          type: string
-          description: ICC ID of existing eSIM (for adding plan to existing eSIM).
-          example: '8901260000000000001'
-    EsimPlan:
-      type: object
-      description: Active or queued eSIM plan.
-      properties:
-        planId:
-          type: string
-          example: plan-abc123
-        status:
-          type: string
-          example: ACTIVE
-        dataUsed:
-          type: number
-          description: Data used in MB.
-          example: 1024.5
-        dataTotal:
-          type: number
-          description: Total data in MB.
-          example: 5120.0
-        validUntil:
-          type: string
-          format: date-time
-          example: '2026-06-01T00:00:00Z'
-    OfferList:
-      type: object
-      description: Paginated offer list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Offer'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 1500
     Purchase:
       type: object
       description: Purchase transaction.
@@ -493,6 +412,30 @@ components:
         total:
           type: integer
           example: 50
+    Refund:
+      type: object
+      description: Refund status for an eSIM purchase.
+      properties:
+        transactionId:
+          type: string
+          example: '500123'
+        refundId:
+          type: string
+          example: refund-abc123
+        status:
+          type: string
+          enum:
+          - REQUESTED
+          - APPROVED
+          - COMPLETED
+          - REJECTED
+          example: APPROVED
+        amount:
+          $ref: '#/components/schemas/Price'
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-05-01T12:00:00Z'
     Offer:
       type: object
       description: Product offer (top-up, eSIM, voucher).
@@ -527,6 +470,28 @@ components:
           $ref: '#/components/schemas/Price'
         receive:
           $ref: '#/components/schemas/Price'
+    EsimPlan:
+      type: object
+      description: Active or queued eSIM plan.
+      properties:
+        planId:
+          type: string
+          example: plan-abc123
+        status:
+          type: string
+          example: ACTIVE
+        dataUsed:
+          type: number
+          description: Data used in MB.
+          example: 1024.5
+        dataTotal:
+          type: number
+          description: Total data in MB.
+          example: 5120.0
+        validUntil:
+          type: string
+          format: date-time
+          example: '2026-06-01T00:00:00Z'
     Price:
       type: object
       description: Monetary amount with currency.
@@ -537,18 +502,61 @@ components:
         currency:
           type: string
           example: USD
+    OfferList:
+      type: object
+      description: Paginated offer list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 1500
+    EsimPurchaseRequest:
+      type: object
+      description: eSIM purchase request.
+      required:
+      - offerId
+      properties:
+        transactionId:
+          type: string
+          example: my-txn-abc123
+        offerId:
+          type: string
+          example: esim-offer-001
+        iccId:
+          type: string
+          description: ICC ID of existing eSIM (for adding plan to existing eSIM).
+          example: '8901260000000000001'
   parameters:
-    Limit:
-      name: _limit
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
+    Offset:
+      name: _offset
       in: query
       required: true
-      description: Items per page (1-1024).
+      description: Pagination offset.
       schema:
         type: integer
-        minimum: 1
-        maximum: 1024
-        default: 100
-      example: 100
+        minimum: 0
+        default: 0
+      example: 0
     TransactionId:
       name: transactionId
       in: path
@@ -571,25 +579,17 @@ components:
         - AUTHORIZED
         - IN_PROGRESS
       example: DONE
-    Country:
-      name: country
-      in: query
-      description: Two-letter ISO country code.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-      example: US
-    Offset:
-      name: _offset
+    Limit:
+      name: _limit
       in: query
       required: true
-      description: Pagination offset.
+      description: Items per page (1-1024).
       schema:
         type: integer
-        minimum: 0
-        default: 0
-      example: 0
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
     OfferId:
       name: offerId
       in: path

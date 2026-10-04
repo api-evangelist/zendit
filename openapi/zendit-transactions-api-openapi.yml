@@ -83,25 +83,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    TransactionList:
-      type: object
-      description: Paginated transaction list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 100
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 100
     Transaction:
       type: object
       description: Transaction with history log.
@@ -135,7 +116,44 @@ components:
           example:
           - status: PENDING
             timestamp: '2026-05-01T12:00:00Z'
+    TransactionList:
+      type: object
+      description: Paginated transaction list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 100
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 100
   parameters:
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
     Status:
       name: status
       in: query
@@ -150,24 +168,6 @@ components:
         - AUTHORIZED
         - IN_PROGRESS
       example: DONE
-    TransactionId:
-      name: transactionId
-      in: path
-      required: true
-      description: Transaction identifier.
-      schema:
-        type: string
-      example: txn-abc123
-    Offset:
-      name: _offset
-      in: query
-      required: true
-      description: Pagination offset.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      example: 0
     Limit:
       name: _limit
       in: query

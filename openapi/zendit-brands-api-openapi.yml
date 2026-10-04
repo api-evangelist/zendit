@@ -122,25 +122,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    BrandList:
+    RedemptionInstructions:
       type: object
-      description: Paginated brand list.
+      description: Brand redemption terms by delivery type.
       properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Brand'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 250
+        deliveryType:
+          type: string
+          example: SMS
+        instructions:
+          type: string
+          example: Dial *123# from your phone to redeem.
+        termsAndConditions:
+          type: string
+          example: Valid for 30 days from purchase.
     Brand:
       type: object
       description: Brand catalog entry.
@@ -170,19 +164,25 @@ components:
           example:
           - Mobile Top Up
           - Bundle
-    RedemptionInstructions:
+    BrandList:
       type: object
-      description: Brand redemption terms by delivery type.
+      description: Paginated brand list.
       properties:
-        deliveryType:
-          type: string
-          example: SMS
-        instructions:
-          type: string
-          example: Dial *123# from your phone to redeem.
-        termsAndConditions:
-          type: string
-          example: Valid for 30 days from purchase.
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 250
   parameters:
     Country:
       name: country

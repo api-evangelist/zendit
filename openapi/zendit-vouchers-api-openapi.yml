@@ -215,105 +215,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    Limit:
-      name: _limit
-      in: query
-      required: true
-      description: Items per page (1-1024).
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1024
-        default: 100
-      example: 100
-    TransactionId:
-      name: transactionId
-      in: path
-      required: true
-      description: Transaction identifier.
-      schema:
-        type: string
-      example: txn-abc123
-    Country:
-      name: country
-      in: query
-      description: Two-letter ISO country code.
-      schema:
-        type: string
-        minLength: 2
-        maxLength: 2
-      example: US
-    Offset:
-      name: _offset
-      in: query
-      required: true
-      description: Pagination offset.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      example: 0
-    OfferId:
-      name: offerId
-      in: path
-      required: true
-      description: Offer identifier.
-      schema:
-        type: string
-      example: offer-12345
   schemas:
-    VoucherPurchaseRequest:
-      type: object
-      description: Voucher purchase request.
-      required:
-      - offerId
-      properties:
-        transactionId:
-          type: string
-          example: my-txn-abc123
-        offerId:
-          type: string
-          example: voucher-offer-001
-        sendValue:
-          $ref: '#/components/schemas/Price'
-        recipient:
-          type: object
-          description: Recipient details.
-          properties:
-            email:
-              type: string
-              format: email
-              example: recipient@example.com
-            firstName:
-              type: string
-              example: Jane
-            lastName:
-              type: string
-              example: Smith
-          example:
-            email: recipient@example.com
-            firstName: Jane
-            lastName: Smith
-    OfferList:
-      type: object
-      description: Paginated offer list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Offer'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 1500
     Purchase:
       type: object
       description: Purchase transaction.
@@ -413,6 +315,104 @@ components:
         currency:
           type: string
           example: USD
+    OfferList:
+      type: object
+      description: Paginated offer list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 1500
+    VoucherPurchaseRequest:
+      type: object
+      description: Voucher purchase request.
+      required:
+      - offerId
+      properties:
+        transactionId:
+          type: string
+          example: my-txn-abc123
+        offerId:
+          type: string
+          example: voucher-offer-001
+        sendValue:
+          $ref: '#/components/schemas/Price'
+        recipient:
+          type: object
+          description: Recipient details.
+          properties:
+            email:
+              type: string
+              format: email
+              example: recipient@example.com
+            firstName:
+              type: string
+              example: Jane
+            lastName:
+              type: string
+              example: Smith
+          example:
+            email: recipient@example.com
+            firstName: Jane
+            lastName: Smith
+  parameters:
+    Country:
+      name: country
+      in: query
+      description: Two-letter ISO country code.
+      schema:
+        type: string
+        minLength: 2
+        maxLength: 2
+      example: US
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
+    Limit:
+      name: _limit
+      in: query
+      required: true
+      description: Items per page (1-1024).
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1024
+        default: 100
+      example: 100
+    OfferId:
+      name: offerId
+      in: path
+      required: true
+      description: Offer identifier.
+      schema:
+        type: string
+      example: offer-12345
   securitySchemes:
     BearerAuth:
       type: http
