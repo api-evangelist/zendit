@@ -280,6 +280,12 @@ apis:
   - type: Examples
     url: https://raw.githubusercontent.com/api-evangelist/zendit/refs/heads/main/examples/
 common:
+  - type: Plans
+    url: plans/zendit-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/zendit-rate-limits.yml
+  - type: FinOps
+    url: finops/zendit-finops.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/zendit/overview
   - type: AgenticAccess
