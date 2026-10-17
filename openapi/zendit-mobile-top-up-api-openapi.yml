@@ -278,6 +278,59 @@ components:
           additionalProperties: true
           description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
           example: {}
+    OfferList:
+      type: object
+      description: Paginated offer list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Offer'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 1500
+    Error:
+      type: object
+      description: Error response.
+      properties:
+        code:
+          type: string
+          example: INVALID_REQUEST
+        description:
+          type: string
+          example: The request is missing required parameter offerId.
+        message:
+          type: string
+          example: offerId is required.
+    TopupPurchaseRequest:
+      type: object
+      description: Top-up purchase request.
+      required:
+      - offerId
+      - subscriberNumber
+      properties:
+        transactionId:
+          type: string
+          description: Client-provided idempotency key.
+          example: my-txn-abc123
+        offerId:
+          type: string
+          description: Offer to purchase.
+          example: offer-12345
+        subscriberNumber:
+          type: string
+          description: Recipient phone number in E.164 format.
+          example: '+15555550100'
+        sendValue:
+          $ref: '#/components/schemas/Price'
     PurchaseList:
       type: object
       description: Paginated purchase list.
@@ -297,6 +350,16 @@ components:
         total:
           type: integer
           example: 50
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
     Offer:
       type: object
       description: Product offer (top-up, eSIM, voucher).
@@ -331,69 +394,6 @@ components:
           $ref: '#/components/schemas/Price'
         receive:
           $ref: '#/components/schemas/Price'
-    Price:
-      type: object
-      description: Monetary amount with currency.
-      properties:
-        amount:
-          type: number
-          example: 10.0
-        currency:
-          type: string
-          example: USD
-    OfferList:
-      type: object
-      description: Paginated offer list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Offer'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 1500
-    TopupPurchaseRequest:
-      type: object
-      description: Top-up purchase request.
-      required:
-      - offerId
-      - subscriberNumber
-      properties:
-        transactionId:
-          type: string
-          description: Client-provided idempotency key.
-          example: my-txn-abc123
-        offerId:
-          type: string
-          description: Offer to purchase.
-          example: offer-12345
-        subscriberNumber:
-          type: string
-          description: Recipient phone number in E.164 format.
-          example: '+15555550100'
-        sendValue:
-          $ref: '#/components/schemas/Price'
-    Error:
-      type: object
-      description: Error response.
-      properties:
-        code:
-          type: string
-          example: INVALID_REQUEST
-        description:
-          type: string
-          example: The request is missing required parameter offerId.
-        message:
-          type: string
-          example: offerId is required.
   parameters:
     Country:
       name: country
@@ -404,24 +404,6 @@ components:
         minLength: 2
         maxLength: 2
       example: US
-    Offset:
-      name: _offset
-      in: query
-      required: true
-      description: Pagination offset.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-      example: 0
-    TransactionId:
-      name: transactionId
-      in: path
-      required: true
-      description: Transaction identifier.
-      schema:
-        type: string
-      example: txn-abc123
     Status:
       name: status
       in: query
@@ -436,6 +418,32 @@ components:
         - AUTHORIZED
         - IN_PROGRESS
       example: DONE
+    TransactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: Transaction identifier.
+      schema:
+        type: string
+      example: txn-abc123
+    Offset:
+      name: _offset
+      in: query
+      required: true
+      description: Pagination offset.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+      example: 0
+    OfferId:
+      name: offerId
+      in: path
+      required: true
+      description: Offer identifier.
+      schema:
+        type: string
+      example: offer-12345
     Limit:
       name: _limit
       in: query
@@ -447,14 +455,6 @@ components:
         maximum: 1024
         default: 100
       example: 100
-    OfferId:
-      name: offerId
-      in: path
-      required: true
-      description: Offer identifier.
-      schema:
-        type: string
-      example: offer-12345
   securitySchemes:
     BearerAuth:
       type: http

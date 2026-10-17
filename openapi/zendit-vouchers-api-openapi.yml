@@ -252,69 +252,6 @@ components:
           additionalProperties: true
           description: Product-specific details (top-up subscriber, voucher recipient, eSIM activation code, etc).
           example: {}
-    PurchaseList:
-      type: object
-      description: Paginated purchase list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Purchase'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 50
-    Offer:
-      type: object
-      description: Product offer (top-up, eSIM, voucher).
-      properties:
-        offerId:
-          type: string
-          description: Unique offer identifier.
-          example: offer-12345
-        name:
-          type: string
-          description: Offer display name.
-          example: Rebel Prepaid 10 USD
-        brand:
-          type: string
-          description: Brand identifier.
-          example: rebel-prepaid
-        country:
-          type: string
-          description: Country code.
-          example: US
-        type:
-          type: string
-          description: Offer type.
-          example: TOPUP
-        subType:
-          type: string
-          description: Offer sub-type.
-          example: Mobile Top Up
-        price:
-          $ref: '#/components/schemas/Price'
-        send:
-          $ref: '#/components/schemas/Price'
-        receive:
-          $ref: '#/components/schemas/Price'
-    Price:
-      type: object
-      description: Monetary amount with currency.
-      properties:
-        amount:
-          type: number
-          example: 10.0
-        currency:
-          type: string
-          example: USD
     OfferList:
       type: object
       description: Paginated offer list.
@@ -366,6 +303,69 @@ components:
             email: recipient@example.com
             firstName: Jane
             lastName: Smith
+    PurchaseList:
+      type: object
+      description: Paginated purchase list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 50
+    Price:
+      type: object
+      description: Monetary amount with currency.
+      properties:
+        amount:
+          type: number
+          example: 10.0
+        currency:
+          type: string
+          example: USD
+    Offer:
+      type: object
+      description: Product offer (top-up, eSIM, voucher).
+      properties:
+        offerId:
+          type: string
+          description: Unique offer identifier.
+          example: offer-12345
+        name:
+          type: string
+          description: Offer display name.
+          example: Rebel Prepaid 10 USD
+        brand:
+          type: string
+          description: Brand identifier.
+          example: rebel-prepaid
+        country:
+          type: string
+          description: Country code.
+          example: US
+        type:
+          type: string
+          description: Offer type.
+          example: TOPUP
+        subType:
+          type: string
+          description: Offer sub-type.
+          example: Mobile Top Up
+        price:
+          $ref: '#/components/schemas/Price'
+        send:
+          $ref: '#/components/schemas/Price'
+        receive:
+          $ref: '#/components/schemas/Price'
   parameters:
     Country:
       name: country
@@ -394,6 +394,14 @@ components:
       schema:
         type: string
       example: txn-abc123
+    OfferId:
+      name: offerId
+      in: path
+      required: true
+      description: Offer identifier.
+      schema:
+        type: string
+      example: offer-12345
     Limit:
       name: _limit
       in: query
@@ -405,14 +413,6 @@ components:
         maximum: 1024
         default: 100
       example: 100
-    OfferId:
-      name: offerId
-      in: path
-      required: true
-      description: Offer identifier.
-      schema:
-        type: string
-      example: offer-12345
   securitySchemes:
     BearerAuth:
       type: http

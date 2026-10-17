@@ -121,68 +121,6 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  schemas:
-    RedemptionInstructions:
-      type: object
-      description: Brand redemption terms by delivery type.
-      properties:
-        deliveryType:
-          type: string
-          example: SMS
-        instructions:
-          type: string
-          example: Dial *123# from your phone to redeem.
-        termsAndConditions:
-          type: string
-          example: Valid for 30 days from purchase.
-    Brand:
-      type: object
-      description: Brand catalog entry.
-      properties:
-        id:
-          type: string
-          description: Brand identifier.
-          example: rebel-prepaid
-        name:
-          type: string
-          description: Brand name.
-          example: Rebel Prepaid
-        country:
-          type: string
-          description: Country code.
-          example: US
-        logoUrl:
-          type: string
-          format: uri
-          description: Brand logo URL.
-          example: https://cdn.zendit.io/logos/rebel.png
-        types:
-          type: array
-          description: Product types offered.
-          items:
-            type: string
-          example:
-          - Mobile Top Up
-          - Bundle
-    BrandList:
-      type: object
-      description: Paginated brand list.
-      properties:
-        list:
-          type: array
-          items:
-            $ref: '#/components/schemas/Brand'
-          example:
-          - {}
-        offset:
-          type: integer
-          example: 0
-        limit:
-          type: integer
-          example: 100
-        total:
-          type: integer
-          example: 250
   parameters:
     Country:
       name: country
@@ -214,6 +152,68 @@ components:
         maximum: 1024
         default: 100
       example: 100
+  schemas:
+    RedemptionInstructions:
+      type: object
+      description: Brand redemption terms by delivery type.
+      properties:
+        deliveryType:
+          type: string
+          example: SMS
+        instructions:
+          type: string
+          example: Dial *123# from your phone to redeem.
+        termsAndConditions:
+          type: string
+          example: Valid for 30 days from purchase.
+    BrandList:
+      type: object
+      description: Paginated brand list.
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/Brand'
+          example:
+          - {}
+        offset:
+          type: integer
+          example: 0
+        limit:
+          type: integer
+          example: 100
+        total:
+          type: integer
+          example: 250
+    Brand:
+      type: object
+      description: Brand catalog entry.
+      properties:
+        id:
+          type: string
+          description: Brand identifier.
+          example: rebel-prepaid
+        name:
+          type: string
+          description: Brand name.
+          example: Rebel Prepaid
+        country:
+          type: string
+          description: Country code.
+          example: US
+        logoUrl:
+          type: string
+          format: uri
+          description: Brand logo URL.
+          example: https://cdn.zendit.io/logos/rebel.png
+        types:
+          type: array
+          description: Product types offered.
+          items:
+            type: string
+          example:
+          - Mobile Top Up
+          - Bundle
   securitySchemes:
     BearerAuth:
       type: http
